@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 부산국제영화제 </title>
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./fontAwesome/css/font-awesome.min.css">
+</head>
+<body>
+	<header>
+
+		<!-- logo -->
+		<div id="site-logo"><a href="./index.html"><img src="./logo/logo.png" alt="logo">부산국제영화제</a></div>
+
+		<!-- navigation -->
+		<nav id="gnb">
+			<ul>
+				<li class="main-menu"><a href="./index.html">메인</a></li>
+				<li class="main-menu"><a href="#">영화제</a>
+					<ul>
+						<li><a href="./contest.html">영화제소개</a></li>
+						<li><a href="./place.html">행사장소개</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">예매</a>
+					<ul>
+						<li><a href="#">상영시간표</a></li>
+						<li><a href="#">영화예매</a></li>
+						<li><a href="#">예매내역</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">영화</a>
+					<ul>
+						<li><a href="#">영화안내</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">이벤트</a>
+					<ul>
+						<li><a href="#">이벤트안내</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	
+		<!-- 로그인, 회원가입 -->
+		<input type="radio" name="member" id="login">
+		<input type="radio" name="member" id="join">
+		<input type="radio" name="member" id="close-member">
+
+		<div id="member-btns">
+			<label for="login">로그인</label>
+			<label for="join">회원가입</label>
+		</div>
+
+		<div id="member-layer">
+			<label for="close-member"></label>
+			<div id="member-wrap">
+				<div id="member-img"></div>
+				<div id="member-forms">
+					<form id="login-layer">
+						<h2>로그인</h2>
+						<input type="text" name="id" class="form-control" placeholder="아이디">
+						<input type="text" name="pw" class="form-control" placeholder="비밀번호">
+						<button type="submit">로그인</button>
+					</form>
+					<form id="join-layer">
+						<h2>회원가입</h2>
+						<input type="text" name="id" class="form-control" placeholder="아이디">
+						<input type="text" name="pw" class="form-control" placeholder="비밀번호">
+						<input type="text" name="pw_chk" class="form-control" placeholder="비밀번호 확인">
+						<input type="text" name="name" class="form-control" placeholder="이름">
+						<button type="submit">회원가입</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<!-- visual -->
+	<section class="visual" id="main-visual">
+		<h1><span>부산국제영화제</span>2019년 10월 3일, 아시아 최대의 영화 축제 부산국제영화제 개막!</h1>
+	</section>
+
+	<!-- intro -->
+	<section id="intro">
+		<h2>10월 3일 부산 국제 영화제를 시작합니다.</h2>
+		<p>부산국제영화제는 1996년 제1회를 시작으로 2019년 제24회를 맞이한, 부산 지역을 넘어 한국 영화계의 최대 축제이다. 현재는 도쿄국제영화제, 상하이국제영화제와 함께 어깨를 나란히 하는 아시아권의 중요한 영화제로 자리잡았습니다.부산광역시 해운대구 우동 센텀시티 일원에서 매년 10월 초에 개최되어 10일간 진행한다. 당시 문공부 기획관리실에 있던 김동호 당시 집행위원장이 영화진흥공사장에 취임하면서 작지만 권위 있는 영화제를 만들자는 취지로 추진, 전양준 부위원장과 수석 프로그래머의 주도로 만들었다.</p>
+	</section>
+
+	<section id="history">
+		<h2>역대영화제</h2>
+		<button class="slide-btn" id="prev-btn"><i class="fa fa-angle-left"></i></button>
+		<div id="history-list" class="list">
+			<div class="list-wrap">
+				<article>
+					<div class="history-poster"><img src="./history-poster/1996.jpg" alt="1996"></div>
+					<h3>1회 1996</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/1997.jpg" alt="1997"></div>
+					<h3>2회 1997</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/1998.jpg" alt="1998"></div>
+					<h3>3회 1998</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/1999.jpg" alt="1999"></div>
+					<h3>4회 1999</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2000.jpg" alt="2000"></div>
+					<h3>5회 2000</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2001.jpg" alt="2001"></div>
+					<h3>6회 2001</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2002.jpg" alt="2002"></div>
+					<h3>7회 2002</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2003.jpg" alt="2003"></div>
+					<h3>8회 2003</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2004.jpg" alt="2004"></div>
+					<h3>9회 2004</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2005.jpg" alt="2005"></div>
+					<h3>10회 2005</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2006.jpg" alt="2006"></div>
+					<h3>11회 2006</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2007.jpg" alt="2007"></div>
+					<h3>12회 2007</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2008.jpg" alt="2008"></div>
+					<h3>13회 2008</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2009.jpg" alt="2009"></div>
+					<h3>14회 2009</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2010.jpg" alt="2010"></div>
+					<h3>15회 2010</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2011.jpg" alt="2011"></div>
+					<h3>16회 2011</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2012.jpg" alt="2012"></div>
+					<h3>17회 2012</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2013.jpg" alt="2013"></div>
+					<h3>18회 2013</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2014.jpg" alt="2014"></div>
+					<h3>19회 2014</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2015.jpg" alt="2015"></div>
+					<h3>20회 2015</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2016.jpg" alt="2016"></div>
+					<h3>21회 2016</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2017.jpg" alt="2017"></div>
+					<h3>22회 2017</h3>
+				</article>
+				<article>
+					<div class="history-poster"><img src="./history-poster/2018.jpg" alt="2018"></div>
+					<h3>23회 2018</h3>
+				</article>
+			</div>
+		</div>
+		<button class="slide-btn" id="next-btn"><i class="fa fa-angle-right"></i></button>
+	</section>
+
+	<section id="popluar">
+		<h2>올해인기작</h2>
+		<button class="slide-btn" id="prev-btn"><i class="fa fa-angle-left"></i></button>
+		<div id="popluar-list" class="list">
+			<div class="list-wrap">
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>빌리 진 킹: 세기의 대결</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>테헤란 타부</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>빅토리아 & 압둘</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>미래로 걸어가다</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>해브 어 나이스 데이</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>사정거리</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>사막의 신부</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>더 워크</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>잔 다르크의 어린 시절</h3>
+				</article>
+				<article>
+					<div class="popluar-poster"></div>
+					<h3>긴 머리 그녀들의 밤외출</h3>
+				</article>
+			</div>
+		</div>
+		<button class="slide-btn" id="next-btn"><i class="fa fa-angle-right"></i></button>
+	</section>
+
+	<section id="partner">
+		<h2>파트너</h2>
+		<div class="partner-img">
+			<img src="./partner/7.jpg" alt="partner7">
+		</div>
+		<div class="partner-img">
+			<img src="./partner/2.jpg" alt="partner2">
+		</div>
+		<div class="partner-img">
+			<img src="./partner/8.jpg" alt="partner8">
+		</div>
+		<div class="partner-img">
+			<img src="./partner/4.jpg" alt="partner4">
+		</div>
+		<div class="partner-img">
+			<img src="./partner/5.jpg" alt="partner5">
+		</div>
+		<div class="partner-img">
+			<img src="./partner/6.jpg" alt="partner6">
+		</div>
+	</section>
+
+	<footer>
+		<div id="footer-nav"> <a href="#">메인</a> | <a href="#">축제소개</a> | <a href="#">영화예매</a> | <a href="#">이벤트&컬쳐</a> | <a href="#">역대영화제</a></div>
+		<div id="contact">주소 (48058) 부산시 해운대구 수영강변대로 120 영화의전당 비프힐 3층 <br>전화 1688-3010 팩스 051-709-2299</div>
+		<ul id="social">
+			<li><a href="#"><img src="./image/behance.png" alt="behance"></a></li>
+			<li><a href="#"><img src="./image/facebook.png" alt="facebook"></a></li>
+			<li><a href="#"><img src="./image/share-this.png" alt="share-this"></a></li>
+			<li><a href="#"><img src="./image/you-tube.png" alt="you-tube"></a></li>
+		</ul>
+		<div id="copyright">Copyright ⓒ 2019. BIFF. All rights reserved</div>
+	</footer>
+</body>
+</html>
