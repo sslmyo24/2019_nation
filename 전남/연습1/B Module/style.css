@@ -53,11 +53,10 @@ input[name="member"][type="radio"]:not(#close-member):checked ~ #member-layer > 
 .visual {position: relative; display: flex; align-items: center; overflow: hidden;}
 .visual > h1 {z-index: 30; position: relative; color: #fff;}
 #main-visual {height: 600px; justify-content: center;}
-#main-visual > #slide-wrap {position: absolute; top: 0; left: 0; width: 300%; height: 100%;}
-#main-visual .slide {width: calc(100%/3); height: 100%; filter: blur(4px);}
+#main-visual .slide {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
 #main-visual .slide:nth-child(1) {background: url(./image/7.jpg) no-repeat center / cover;}
-#main-visual .slide:nth-child(2) {background: url(./image/8.jpg) no-repeat center / cover;}
-#main-visual .slide:nth-child(3) {background: url(./image/9.jpg) no-repeat center / cover;}
+#main-visual .slide:nth-child(2) {background: url(./image/62.jpg) no-repeat center / cover; display: none;}
+#main-visual .slide:nth-child(3) {background: url(./image/9.jpg) no-repeat center / cover; display: none;}
 #main-visual > h1 {font-size: 19px;}
 #main-visual > h1 > span {display: block; width: 300px; margin: 0 auto; font-size: 40px; margin-bottom: 10px;}
 
