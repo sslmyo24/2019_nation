@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 부산국제영화제 </title>
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./fontAwesome/css/font-awesome.min.css">
+	<script src="./jquery/jquery-3.2.1.min.js"></script>
+	<script src="./js/script.js"></script>
+	<style>
+		h2 {line-height: 100px; border-bottom: 3px solid #000;}
+		#movie-info {display: flex; justify-content: space-between; margin: 50px 0;}
+		#movie-img {width: 55%;}
+		#movie-img > img {max-width: 100%;}
+		#movie-dec {width: 40%;}
+		#timetable > table {width: 100%; border: 1px solid #000;}
+		#timetable thead {background: #000; color: #fff;}
+		#timetable caption {font-size: 25px; margin-bottom: 10px; font-weight: bold; text-align: left;}
+		h3 {margin-top: 50px; font-size: 20px; margin-bottom: 5px;}
+		#comment-form {width: 100%; display: flex;}
+		#comment-form > textarea {width: 95%; height: 60px; padding: 5px; box-sizing: border-box;}
+		#comment-form > button {width: 60px; height: 60px; padding: 5px; border: none; background: #000; color: #fff;}
+		#comment-list {margin-top: 30px; width: 100%;}
+		#comment-list > li {width: 100%;}
+		#comment-list p:first-child {font-size: 17px; padding-left: 10px; margin-bottom: 5px;}
+		#comment-list span:first-child {margin-right: 30px;}
+		#comment-list .delete-btn {background: transparent; border: none; margin-left: 30px; color: #09f; font-size: 13px;}
+		#comment-list .comment-content {background: #eee; border-radius: 10px; line-height: 50px; font-size: 15px; padding-left: 10px;}
+	</style>
+</head>
+<body>
+	<header>
+
+		<!-- logo -->
+		<div id="site-logo"><a href="./index.html"><img src="./logo/logo.png" alt="logo">부산국제영화제</a></div>
+
+		<!-- navigation -->
+		<nav id="gnb">
+			<ul>
+				<li class="main-menu"><a href="./index.html">메인</a></li>
+				<li class="main-menu"><a href="#">영화제</a>
+					<ul>
+						<li><a href="./contest.html">영화제소개</a></li>
+						<li><a href="./place.html">행사장소개</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">예매</a>
+					<ul>
+						<li><a href="./timetable.html">상영시간표</a></li>
+						<li><a href="./ticketing.html">영화예매</a></li>
+						<li><a href="./history.html">예매내역</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">영화</a>
+					<ul>
+						<li><a href="#">영화안내</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">이벤트</a>
+					<ul>
+						<li><a href="#">이벤트안내</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	
+		<!-- 로그인, 회원가입 -->
+		<input type="radio" name="member" id="login">
+		<input type="radio" name="member" id="join">
+		<input type="radio" name="member" id="close-member">
+
+		<div id="member-btns">
+			<label for="login">로그인</label>
+			<label for="join">회원가입</label>
+		</div>
+
+		<div id="member-layer">
+			<label for="close-member"></label>
+			<div id="member-wrap">
+				<div id="member-img"></div>
+				<div id="member-forms">
+					<form id="login-layer">
+						<h2>로그인</h2>
+						<input type="text" name="id" class="form-control" placeholder="아이디">
+						<input type="text" name="pw" class="form-control" placeholder="비밀번호">
+						<button type="submit">로그인</button>
+					</form>
+					<form id="join-layer">
+						<h2>회원가입</h2>
+						<input type="text" name="id" class="form-control" placeholder="아이디">
+						<input type="text" name="pw" class="form-control" placeholder="비밀번호">
+						<input type="text" name="pw_chk" class="form-control" placeholder="비밀번호 확인">
+						<input type="text" name="name" class="form-control" placeholder="이름">
+						<button type="submit">회원가입</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<section class="visual" id="sub-visual">
+		<h1>상영시간표</h1>
+	</section>
+
+	<section id="content">
+		<div id="sub-nav">
+			<div id="main-menu-title"><a href="#">예매</a></div>
+			<div class="sub-menu-title checked"><a href="./timetable.html">상영시간표</a></div>
+			<div class="sub-menu-title"><a href="./ticketing.html">영화예매</a></div>
+			<div class="sub-menu-title"><a href="./history.html">예매내역</a></div>
+		</div>
+		<div class="main-content">
+			<h2>다운사이징 / Downsizing</h2>
+			<div id="movie-info">
+				<div id="movie-img"><img src="./data/posterImage/1503389871.jpg" alt="다운사이징"></div>
+				<table id="movie-dec">
+					<tr>
+						<td>영화명</td>
+						<td>다운사이징 / Downsizing</td>
+					</tr>
+					<tr>
+						<td>감독</td>
+						<td>알렉산더 페인/Alexander PAYNE</td>
+					</tr>
+					<tr>
+						<td>제작국가</td>
+						<td>United States</td>
+					</tr>
+					<tr>
+						<td>섹션</td>
+						<td>월드 시네망</td>
+					</tr>
+					<tr>
+						<td>러닝타임</td>
+						<td>135분</td>
+					</tr>
+				</table>
+			</div>
+			<div id="timetable">
+				<table cellspacing="0">
+					<caption>상영정보</caption>
+					<colgroup>
+						<col width="25%">
+						<col width="25%">
+						<col width="25%">
+						<col width="25%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>예매코드</th>
+							<th>상영관</th>
+							<th>상영일</th>
+							<th>상영시간</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>037</td>
+							<td>CGV 4관</td>
+							<td>4</td>
+							<td>19:00</td>
+						</tr>
+						<tr>
+							<td>245</td>
+							<td>영화의전당 야외극장</td>
+							<td>7</td>
+							<td>19:00</td>
+						</tr>
+						<tr>
+							<td>453</td>
+							<td>롯데시네마 3관</td>
+							<td>9</td>
+							<td>19:00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<h3>댓글</h3>
+			<form id="comment-form">
+				<textarea name="comment" placeholder="댓글 작성"></textarea>
+				<button type="submit">작성</button>
+			</form>
+			<ul id="comment-list">
+				<li>
+					<p><span class="writer">작성자 : 유저사</span><span>작성일 : 2019-10-12</span><button class="delete-btn">삭제</button></p>
+					<p class="comment-content">내용내용내용내용내용내용내용내용내용</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<footer>
+		<div id="footer-nav"> <a href="#">메인</a> | <a href="#">축제소개</a> | <a href="#">영화예매</a> | <a href="#">이벤트&컬쳐</a> | <a href="#">역대영화제</a></div>
+		<div id="contact">주소 (48058) 부산시 해운대구 수영강변대로 120 영화의전당 비프힐 3층 <br>전화 1688-3010 팩스 051-709-2299</div>
+		<ul id="social">
+			<li><a href="#"><img src="./image/behance.png" alt="behance"></a></li>
+			<li><a href="#"><img src="./image/facebook.png" alt="facebook"></a></li>
+			<li><a href="#"><img src="./image/share-this.png" alt="share-this"></a></li>
+			<li><a href="#"><img src="./image/you-tube.png" alt="you-tube"></a></li>
+		</ul>
+		<div id="copyright">Copyright ⓒ 2019. BIFF. All rights reserved</div>
+	</footer>
+</body>
+</html>

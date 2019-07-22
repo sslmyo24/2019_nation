@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 부산국제영화제 </title>
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./fontAwesome/css/font-awesome.min.css">
+	<script src="./jquery/jquery-3.2.1.min.js"></script>
+	<script src="./js/script.js"></script>
+	<style>
+		.select-box {border: 1px solid #000; padding: 20px 0 20px 30px;}
+		.select-box button {border: none; font-size: 17px; background: transparent; margin-right: 10px; cursor: pointer; outline: none;}
+		.select-box button:hover {text-decoration: underline;}
+		.select-box button.chk {color: #09f; text-decoration: underline;}
+		#select-kind, #select-theater {display: none;}
+		.theater-list {display: none;}
+		#timetable > table {width: 100%; display: none;}
+		#timetable thead {background: #000; color: #fff;}
+		#timetable td {border: 1px solid #aaa; padding: 5px;}
+		#timetable .movie-code {font-weight: bold;}
+		#timetable .movie-time {padding-left: 15px; color: #09f;}
+		#timetable a {color: #000;}
+		#timetable a:hover {text-decoration: underline;}
+	</style>
+</head>
+<body>
+	<header>
+
+		<!-- logo -->
+		<div id="site-logo"><a href="./index.html"><img src="./logo/logo.png" alt="logo">부산국제영화제</a></div>
+
+		<!-- navigation -->
+		<nav id="gnb">
+			<ul>
+				<li class="main-menu"><a href="./index.html">메인</a></li>
+				<li class="main-menu"><a href="#">영화제</a>
+					<ul>
+						<li><a href="./contest.html">영화제소개</a></li>
+						<li><a href="./place.html">행사장소개</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">예매</a>
+					<ul>
+						<li><a href="./timetable.html">상영시간표</a></li>
+						<li><a href="./ticketing.html">영화예매</a></li>
+						<li><a href="./history.html">예매내역</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">영화</a>
+					<ul>
+						<li><a href="#">영화안내</a></li>
+					</ul>
+				</li>
+				<li class="main-menu"><a href="#">이벤트</a>
+					<ul>
+						<li><a href="#">이벤트안내</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	
+		<!-- 로그인, 회원가입 -->
+		<input type="radio" name="member" id="login">
+		<input type="radio" name="member" id="join">
+		<input type="radio" name="member" id="close-member">
+
+		<div id="member-btns">
+			<label for="login">로그인</label>
+			<label for="join">회원가입</label>
+		</div>
+
+		<div id="member-layer">
+			<label for="close-member"></label>
+			<div id="member-wrap">
+				<div id="member-img"></div>
+				<div id="member-forms">
+					<form id="login-layer">
+						<h2>로그인</h2>
+						<input type="text" name="id" class="form-control" placeholder="아이디">
+						<input type="text" name="pw" class="form-control" placeholder="비밀번호">
+						<button type="submit">로그인</button>
+					</form>
+					<form id="join-layer">
+						<h2>회원가입</h2>
+						<input type="text" name="id" class="form-control" placeholder="아이디">
+						<input type="text" name="pw" class="form-control" placeholder="비밀번호">
+						<input type="text" name="pw_chk" class="form-control" placeholder="비밀번호 확인">
+						<input type="text" name="name" class="form-control" placeholder="이름">
+						<button type="submit">회원가입</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<section class="visual" id="sub-visual">
+		<h1>상영시간표</h1>
+	</section>
+
+	<section id="content">
+		<div id="sub-nav">
+			<div id="main-menu-title"><a href="#">예매</a></div>
+			<div class="sub-menu-title checked"><a href="./timetable.html">상영시간표</a></div>
+			<div class="sub-menu-title"><a href="./ticketing.html">영화예매</a></div>
+			<div class="sub-menu-title"><a href="./history.html">예매내역</a></div>
+		</div>
+		<div class="main-content">
+			<div class="select-box" id="select-standard">
+				<button>날짜별</button>
+				<button>극장별</button>
+				<button>섹션별</button>
+			</div>
+			<div class="select-box" id="select-kind">
+				<div id="standard-date">
+					<button>3</button>
+					<button>4</button>
+					<button>5</button>
+					<button>6</button>
+					<button>7</button>
+					<button>8</button>
+					<button>9</button>
+					<button>10</button>
+					<button>11</button>
+					<button>12</button>
+				</div>
+				<div id="standard-theater">
+					<button data-name="영화의전당">영화의전당</button>
+					<button data-name="CGV">CGV</button>
+					<button data-name="롯데시네마">롯데시네마</button>
+					<button data-name="소향씨어터">소향씨어터</button>
+					<button data-name="메가박스">메가박스</button>
+				</div>
+				<div id="standard-section">
+					<button>개폐막작</button>
+					<button>월드 시네마</button>
+					<button>와이드 앵글</button>
+					<button>갈라 프레젠테이션</button>
+					<button>아시아 영화의 창</button>
+					<button>뉴 커런츠</button>
+					<button>미드나잇 패션</button>
+					<button>플래시 포워드</button>
+					<button>오픈 시네마</button>
+				</div>
+			</div>
+			<div class="select-box" id="select-theater">
+				<div class="theater-list" data-name="영화의전당">
+					<button>영화의전당 야외극장</button>
+					<button>영화의전당 하늘연극장</button>
+					<button>영화의전당 중극장</button>
+					<button>영화의전당 소극장</button>
+					<button>영화의전당 시네마테크</button>
+				</div>
+				<div class="theater-list" data-name="CGV">
+					<button>CGV 1관</button>
+					<button>CGV 2관</button>
+					<button>CGV 3관</button>
+					<button>CGV 4관</button>
+					<button>CGV 5관</button>
+				</div>
+				<div class="theater-list" data-name="롯데시네마">
+					<button>롯데시네마 1관</button>
+					<button>롯데시네마 2관</button>
+					<button>롯데시네마 3관</button>
+					<button>롯데시네마 4관</button>
+				</div>
+				<div class="theater-list" data-name="소향씨어터">
+					<button>소향씨어터 신한카드홀</button>
+				</div>
+				<div class="theater-list" data-name="메가박스">
+					<button>메가박스 1관</button>
+					<button>메가박스 2관</button>
+					<button>메가박스 3관</button>
+					<button>메가박스 4관</button>
+					<button>메가박스 5관</button>
+				</div>
+			</div>
+			<div id="timetable">
+				<table id="date-timetable" cellspacing="0">
+					<colgroup>
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>극장 / 회차</th>
+							<th>01</th>
+							<th>02</th>
+							<th>03</th>
+							<th>04</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>영회의 전당 야외극장</td>
+							<td>
+								<p><span class="movie-code">002</span><span class="movie-time">10:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">대담하거나, 타락하거나, 아름다운</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">The Bold, The Corrupt And The Beautiful</a></p>
+							</td>
+							<td>
+								<p><span class="movie-code">003</span><span class="movie-time">13:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">이산자</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">After Chosun</a></p>
+							</td>
+							<td>
+								<p><span class="movie-code">004</span><span class="movie-time">16:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">금구모궐</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">The Scythian Lamb</a></p>
+							</td>
+							<td>
+								<p><span class="movie-code">005</span><span class="movie-time">19:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">조금만 더</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">More</a></p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="theater-timetable" cellspacing="0">
+					<colgroup>
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>날짜 / 회차</th>
+							<th>01</th>
+							<th>02</th>
+							<th>03</th>
+							<th>04</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>4</td>
+							<td>
+								<p><span class="movie-code">002</span><span class="movie-time">10:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">대담하거나, 타락하거나, 아름다운</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">The Bold, The Corrupt And The Beautiful</a></p>
+							</td>
+							<td>
+								<p><span class="movie-code">003</span><span class="movie-time">13:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">이산자</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">After Chosun</a></p>
+							</td>
+							<td>
+								<p><span class="movie-code">004</span><span class="movie-time">16:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">금구모궐</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">The Scythian Lamb</a></p>
+							</td>
+							<td>
+								<p><span class="movie-code">005</span><span class="movie-time">19:00</span></p>
+								<p class="movie-name"><a href="./movie-info.html">조금만 더</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">More</a></p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="section-timetable" cellspacing="0">
+					<colgroup>
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>영화명</th>
+							<th>상영관</th>
+							<th>상영시간</th>
+							<th>상영일</th>
+							<th>예매코드</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<p class="movie-name"><a href="./movie-info.html">대담하거나, 타락하거나, 아름다운</a></p>
+								<p class="movie-en-name"><a href="./movie-info.html">The Bold, The Corrupt And The Beautiful</a></p>
+							</td>
+							<td>
+								<p>CGV 4관</p>
+								<p>영화의전당 야외극장</p>
+								<p>롯데시네마 3관</p>
+							</td>
+							<td>
+								<p>13:00</p>
+								<p>13:00</p>
+								<p>13:00</p>
+							</td>
+							<td>
+								<p>4</p>
+								<p>7</p>
+								<p>9</p>
+							</td>
+							<td>
+								<p>035</p>
+								<p>243</p>
+								<p>451</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		$(".select-box button").click(function(event) {
+			$(this).parent().find('button.chk').removeClass('chk');
+			$(this).addClass('chk');
+		});
+		$("#select-standard > button:not(.chk)").click(function(event) {
+			$("#select-kind").show();
+			$("#select-kind > div").hide();
+			$("#select-theater").hide();
+			$("table").hide();
+			if ($(this).index() == 0) {
+				$("#select-kind > #standard-date").show();
+			} else if ($(this).index() == 1) {
+				$("#select-kind > #standard-theater").show();
+			} else {
+				$("#select-kind > #standard-section").show();
+			}
+		});
+		$("#standard-theater > button").click(function(event) {
+			const name = $(this).data('name');
+			$(".theater-list").hide();
+			$(".theater-list").each(function(index, el) {
+				if (name === $(el).data('name')) {
+					$("#select-theater").show();
+					$(el).show();
+					return;
+				}
+			});
+		});
+		$("#select-kind > div:not(#standard-theater) > button").click(function(event) {
+			$("table").hide();
+			if ($(this).parent().index() == 0) {
+				$("#date-timetable").show();
+			} else if ($(this).parent().index() == 2) {
+				$("#section-timetable").show();
+			}
+		});
+		$("#select-theater button").click(function(event) {
+			$("table").hide();
+			$("#theater-timetable").show();
+		});
+	</script>
+
+	<footer>
+		<div id="footer-nav"> <a href="#">메인</a> | <a href="#">축제소개</a> | <a href="#">영화예매</a> | <a href="#">이벤트&컬쳐</a> | <a href="#">역대영화제</a></div>
+		<div id="contact">주소 (48058) 부산시 해운대구 수영강변대로 120 영화의전당 비프힐 3층 <br>전화 1688-3010 팩스 051-709-2299</div>
+		<ul id="social">
+			<li><a href="#"><img src="./image/behance.png" alt="behance"></a></li>
+			<li><a href="#"><img src="./image/facebook.png" alt="facebook"></a></li>
+			<li><a href="#"><img src="./image/share-this.png" alt="share-this"></a></li>
+			<li><a href="#"><img src="./image/you-tube.png" alt="you-tube"></a></li>
+		</ul>
+		<div id="copyright">Copyright ⓒ 2019. BIFF. All rights reserved</div>
+	</footer>
+</body>
+</html>
