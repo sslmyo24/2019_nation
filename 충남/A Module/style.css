@@ -1,0 +1,29 @@
+/*config*/
+* {margin: 0; padding: 0;}
+ul, li {list-style: none;}
+a {text-decoration: none;}
+[type="radio"], [type="checkbox"] {display: none;}
+
+/*Header*/
+header {height: 70px; padding: 0 100px; display: flex; justify-content: space-between; align-items: center; background: #777}
+header a {color: #fff;}
+
+/*symbol logo*/
+#site-logo img {margin-right: 20px;}
+
+/*navigation*/
+#gnb {width: 250px;}
+#gnb > ul {width: 100%; display: flex; justify-content: space-between;}
+#gnb li {font-size: 12px;}
+
+
+/*Main-Visual*/
+#visual {height: 600px; background: url(./img/visual.jpg) no-repeat center / cover;}
+#visual-text {color: #fff;}
+
+
+
+/*footer*/
+footer {padding: 0 100px; height: 100px; display: flex; justify-content: space-between; align-items: center;}
+
+
