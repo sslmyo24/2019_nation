@@ -1,11 +1,16 @@
 /*config*/
 * {margin: 0; padding: 0;}
+body {font-family: '맑은 고딕'}
 ul, li {list-style: none;}
 a {text-decoration: none;}
 [type="radio"], [type="checkbox"] {display: none;}
 
+/*lib*/
+.btn {border: none; background: #808080; display: block; height: 30px; color: #fff; padding: 0 30px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer;}
+.wrap {display: flex; justify-content: space-between; align-items: center;}
+
 /*Header*/
-header {height: 70px; padding: 0 100px; display: flex; justify-content: space-between; align-items: center; background: #777}
+header {height: 100px; padding: 0 100px; display: flex; justify-content: space-between; align-items: center; background: #333}
 header a {color: #fff;}
 
 /*symbol logo*/
@@ -14,16 +19,62 @@ header a {color: #fff;}
 /*navigation*/
 #gnb {width: 250px;}
 #gnb > ul {width: 100%; display: flex; justify-content: space-between;}
-#gnb li {font-size: 12px;}
+#gnb li {font-size: 15px;}
 
 
 /*Main-Visual*/
 #visual {height: 600px; background: url(./img/visual.jpg) no-repeat center / cover;}
-#visual-text {color: #fff;}
+#visual-text {color: #fff; padding: 150px 0 0 100px;}
+#visual-text > h1 {font-size: 35px;}
+#visual-text > p {font-size: 17px; width: 500px; padding: 20px 0 30px 0; letter-spacing: -1px}
 
 
+/*Contents*/
+#visual ~ section {padding: 50px 100px;}
+#visual ~ section > h2 {text-align: center; font-size: 30px; margin-bottom: 30px;}
+
+/*Features*/
+#feature article {width: 28%;}
+#feature img {max-height: 50px;}
+#feature h3 {font-size: 20px; padding: 20px 0 10px 0;}
+#feature p {font-size: 13px;}
+#feature button {margin-top: 15px;}
+
+/*Gallery&Slider*/
+#gallery .slide-btn {font-size: 20px; transform: scale(1.5, 3); position: relative;}
+#gallery label {position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 10; cursor: pointer;}
+#img-list {width: 80%; overflow: hidden;}
+#img-list > div {width: 200%; display: flex; align-items: center; transition: .5s;}
+#img-list article {width: 11.5%; height: 250px; position: relative;}
+#img-list article:not(:nth-child(4n)) {margin-right: calc(4%/3);}
+#img-list img {width: 100%; height: 100%;}
+#img-list .gallery-text {position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; z-index: 10; background: rgba(0,0,0,.5); color: #fff; transition: .5s; padding: 20px; box-sizing: border-box;}
+#img-list h3 {font-size: 17px; margin-bottom: 10px;}
+#img-list p {font-size: 13px;}
+#img-list .gallery-text:hover {opacity: 1;}
+
+#pos1:checked ~ #img-list > div {margin-left: 0;}
+#pos2:checked ~ #img-list > div {margin-left: -100%;}
+
+/*Contacts*/
+#contacts {display: flex; margin: 0 auto; padding: 0 !important; width: 1000px; height: 400px; box-shadow: 1px 1px 3px #000; position: relative; z-index: 10;}
+#contacts > * {height: 100%; box-sizing: border-box;}
+#contacts h2 {text-align: center;}
+#contact-form {width: 70%; background: #fff; padding: 30px 150px;}
+#contact-form > h2 {margin-bottom: 30px;}
+#contact-form input {border: none; border-bottom: 1px solid #aaa; width: 100%; line-height: 40px; margin-bottom: 20px; padding-left: 10px; font-size: 11px;}
+#contact-form input, textarea {border: none; border-bottom: 1px solid #aaa; width: 100%; line-height: 40px; margin-bottom: 20px; padding-left: 10px; font-size: 11px;}
+#contact-info {background: #555; width: 30%; color: #fff; padding: 30px;}
+#contact-info > h2 {margin-bottom: 30px; font-weight: normal; font-size: 15px;}
+#contact-info > div > div {display: flex; align-items: center; font-size: 13px; margin-bottom: 20px; height: 15px;}
+#contact-info .icon {width: 40px;}
+#contact-info img {transform: scale(.5); display: block; margin: 0 auto;}
 
 /*footer*/
-footer {padding: 0 100px; height: 100px; display: flex; justify-content: space-between; align-items: center;}
-
-
+footer {position: relative; background: #333 ; height: 300px; margin-top: -150px;}
+footer > .wrap {padding: 0 100px; height: 150px; display: flex; justify-content: space-between; align-items: center; color: #fff; position: absolute; width: 100%; bottom: 0; left: 0; box-sizing: border-box;}
+#admin-info {font-size: 15px;}
+#social {width: 120px; height: 30px; display: flex; justify-content: space-between;}
+#social > li, #social a {height: 100%;}
+#social img {max-height: 100%;}
+#copyright {font-size: 13px;}
