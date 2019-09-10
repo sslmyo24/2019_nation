@@ -1,16 +1,15 @@
 /*config*/
 * {margin: 0; padding: 0;}
-body {font-family: '맑은 고딕'}
 ul, li {list-style: none;}
 a {text-decoration: none;}
 [type="radio"], [type="checkbox"] {display: none;}
 
 /*lib*/
-.btn {border: none; background: #808080; display: block; height: 30px; color: #fff; padding: 0 30px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer;}
+.btn {border: none; display: block; height: 30px; color: #fff; padding: 0 30px; border-radius: 4px; font: bold 13px; cursor: pointer; outline: none; background: #09f;}
 .wrap {display: flex; justify-content: space-between; align-items: center;}
 
 /*Header*/
-header {height: 100px; padding: 0 100px; display: flex; justify-content: space-between; align-items: center; /*background: #333*/}
+header {height: 100px; padding: 0 100px; display: flex; justify-content: space-between; align-items: center;}
 header a {color: #000;}
 
 /*symbol logo*/
@@ -26,16 +25,27 @@ header a {color: #000;}
 
 
 /*Main-Visual*/
-#visual {height: 600px; animation: bgChange 10s infinite;}
-#visual-text {color: #fff; padding: 150px 0 0 100px;}
-#visual-text > h1 {font-size: 35px;}
-#visual-text > p {font-size: 17px; width: 500px; padding: 20px 0 30px 0; letter-spacing: -1px}
+#visual1 {height: 600px; position: relative; display: flex; justify-content: center; align-items: center;}
+#visual1:before, #visual1 > .slide {position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
+#visual1:before {background: rgba(0,0,0,.6); z-index: 10; display: block; content: "";}
+#visual1 > .slide {opacity: 0; z-index: 5;}
+#visual1 > .slide:nth-child(1) {background: url(./img/1.jpg) no-repeat center / cover; animation: slide1 10s infinite;}
+#visual1 > .slide:nth-child(2) {background: url(./img/2.jpg) no-repeat center / cover; animation: slide2 10s infinite;}
 
-@keyframes bgChange {
-	100%, 0%, 45% {background: url(./img/visual.jpg) no-repeat center / cover;}
-	50%, 95% {background: url(./img/1.jpg) no-repeat center / cover;}
+@keyframes slide1 {
+	100%, 0%, 45% {opacity: 1;}
+	50%, 95% {opacity: 0;}
 }
 
+@keyframes slide2 {
+	100%, 0%, 45% {opacity: 0;}
+	50%, 95% {opacity: 1;}
+}
+
+#visual1 > .visual-text {color: #fff; position: relative; z-index: 20; text-align: center;}
+#visual1 > .visual-text > h1 {font-size: 40px;}
+#visual1 > .visual-text > p {font-size: 15px; width: 500px; padding: 20px 0 30px 0; letter-spacing: -1px}
+#visual1 button {margin: 0 auto;}
 
 /*Contents*/
 .content {padding: 50px 100px;}
