@@ -38,8 +38,8 @@ header a {color: #000;}
 
 
 /*Contents*/
-#visual ~ section {padding: 50px 100px;}
-#visual ~ section > h2 {text-align: center; font-size: 30px; margin-bottom: 30px;}
+.content {padding: 50px 100px;}
+.content > h2 {text-align: center; font-size: 30px; margin-bottom: 30px;}
 
 /*Features*/
 #feature article {width: 28%;}
@@ -65,7 +65,7 @@ header a {color: #000;}
 #pos2:checked ~ #img-list > div {margin-left: -100%;}
 
 /*Contacts*/
-#contacts {display: flex; margin: 0 auto; padding: 0 !important; width: 1000px; height: 400px; box-shadow: 1px 1px 3px #000; position: relative; z-index: 10;}
+#contacts {display: flex; margin: 0 auto; width: 1000px; height: 400px; box-shadow: 1px 1px 3px #000; position: relative; z-index: 10;}
 #contacts > * {height: 100%; box-sizing: border-box;}
 #contacts h2 {text-align: center;}
 #contact-form {width: 70%; background: #fff; padding: 30px 150px;}
