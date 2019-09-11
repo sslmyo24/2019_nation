@@ -124,7 +124,6 @@ header a {color: #000;}
 #gallery1 #pos7:checked ~ #gallery-right .slide-next [for="pos8"],
 #gallery1 #pos8:checked ~ #gallery-right .slide-prev [for="pos7"] {z-index: 10;}
 
-/*#gallery1 #pos2:checked ~ */
 
 #gallery .slide-btn {font-size: 20px; transform: scale(1.5, 3); position: relative;}
 #gallery label {position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 10; cursor: pointer;}
@@ -140,6 +139,19 @@ header a {color: #000;}
 
 #gallery #pos1:checked ~ #img-list > div {margin-left: 0;}
 #gallery #pos2:checked ~ #img-list > div {margin-left: -100%;}
+
+#gallery2 > h2 {padding: 50px 0 30px 0; text-align: center;}
+#gallery2 > .wrap {height: 600px; display: flex; flex-wrap: wrap; width: 100%;}
+#gallery2 > .wrap > div {height: 100%}
+#gallery2 .right {width: 30%; background: url(./img/gallery2/24.jpg) no-repeat center / cover;}
+#gallery2 .left {width: 70%; height: 100%;}
+#gallery2 .left > div {width: 100%; display: flex;}
+#gallery2 .top {height: 60%;}
+#gallery2 .bottom {height: 40%;}
+#gallery2 .bottom > div {height: 100%; width: 100%;}
+#gallery2 .bottom > div:nth-child(1) {background: url(./img/gallery2/28.jpg) no-repeat center / cover;}
+#gallery2 .bottom > div:nth-child(2) {background: url(./img/gallery2/29.jpg) no-repeat center / cover;}
+#gallery2 .bottom > div:nth-child(3) {background: url(./img/gallery2/30.jpg) no-repeat center / cover;}
 
 /*Contacts*/
 #contacts {display: flex; margin: 0 auto; width: 1000px; height: 400px; box-shadow: 1px 1px 3px #000; position: relative; z-index: 10;}
