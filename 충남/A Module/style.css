@@ -52,6 +52,13 @@ header a {color: #000;}
 .content > h2 {text-align: center; font-size: 30px; margin-bottom: 30px;}
 
 /*Features*/
+#feature1 > .wrap {display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; width: 1200px; margin: 0 auto;}
+#feature1 article {width: 30%; background: #fff; height: 300px; box-shadow: 1px 1px 3px #ccc; padding: 30px; box-sizing: border-box;}
+#feature1 img {max-height: 50px;}
+#feature1 h3 {font-size: 20px; padding: 20px 0 10px 0;}
+#feature1 p {font-size: 13px;}
+#feature1 button {margin-top: 15px;}
+
 #feature article {width: 28%;}
 #feature img {max-height: 50px;}
 #feature h3 {font-size: 20px; padding: 20px 0 10px 0;}
@@ -59,6 +66,66 @@ header a {color: #000;}
 #feature button {margin-top: 15px;}
 
 /*Gallery&Slider*/
+#gallery1 > .wrap {display: flex; justify-content: space-between; height: 400px; width: 900px; margin: 0 auto;}
+#gallery1 > .wrap > div {width: 400px; height: 100%; position: relative;}
+#gallery1 #select-img > article {width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: .5s; opacity: 0;}
+#gallery1 #select-img > article:nth-child(1) {background: url(./img/gallery1.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(2) {background: url(./img/gallery2.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(3) {background: url(./img/gallery3.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(4) {background: url(./img/gallery4.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(5) {background: url(./img/gallery5.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(6) {background: url(./img/gallery6.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(7) {background: url(./img/gallery7.jpg) no-repeat center / cover;}
+#gallery1 #select-img > article:nth-child(8) {background: url(./img/gallery8.jpg) no-repeat center / cover;}
+#gallery1 .gallery-text {transition: .5s; position: relative; z-index: 10; background: rgba(0,0,0,.8); opacity: 0; color: #fff; padding: 30px; box-sizing: border-box; height: 100%;}
+#gallery1 .gallery-text > h3 {margin-bottom: 20px; font-size: 20px;}
+#gallery1 .gallery-text > p {font-size: 17px; letter-spacing: -1px}
+#gallery1 article:hover > .gallery-text {opacity: 1;}
+
+
+#gallery1 #slide-btns {width: 110px; height: 50px; display: flex; justify-content: space-between; position: absolute; right: 0; bottom: 100px;}
+#gallery1 #slide-btns > div {width: 50px; height: 50px; background: #333; color: #fff; text-align: center; line-height: 50px; font-size: 20px; font-weight: bold; position: relative;}
+#gallery1 #slide-btns label {position: absolute; width: 100%; height: 100%; display: block; top: 0; left: 0; z-index: -1; cursor: pointer;}
+
+#gallery1 #img-list {width: 480px; height: 80px; position: absolute; bottom: 0; right: 0;}
+#gallery1 #img-list > div {display: flex; height: 100%; margin-left: -80px; transition: .5s;}
+#gallery1 #img-list > div > div {height: 100%; width: 80px;}
+#gallery1 #img-list > div > div:nth-child(1) {background: url(./img/gallery1.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(2) {background: url(./img/gallery2.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(3) {background: url(./img/gallery3.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(4) {background: url(./img/gallery4.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(5) {background: url(./img/gallery5.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(6) {background: url(./img/gallery6.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(7) {background: url(./img/gallery7.jpg) no-repeat center / cover;}
+#gallery1 #img-list > div > div:nth-child(8) {background: url(./img/gallery8.jpg) no-repeat center / cover;}
+
+
+#gallery1 #pos1:checked ~ #select-img > article:nth-child(1),
+#gallery1 #pos2:checked ~ #select-img > article:nth-child(2),
+#gallery1 #pos3:checked ~ #select-img > article:nth-child(3),
+#gallery1 #pos4:checked ~ #select-img > article:nth-child(4),
+#gallery1 #pos5:checked ~ #select-img > article:nth-child(5),
+#gallery1 #pos6:checked ~ #select-img > article:nth-child(6),
+#gallery1 #pos7:checked ~ #select-img > article:nth-child(7),
+#gallery1 #pos8:checked ~ #select-img > article:nth-child(8) {opacity: 1; z-index: 10;}
+
+#gallery1 #pos1:checked ~ #gallery-right .slide-next [for="pos2"],
+#gallery1 #pos2:checked ~ #gallery-right .slide-prev [for="pos1"],
+#gallery1 #pos2:checked ~ #gallery-right .slide-next [for="pos3"],
+#gallery1 #pos3:checked ~ #gallery-right .slide-prev [for="pos2"],
+#gallery1 #pos3:checked ~ #gallery-right .slide-next [for="pos4"],
+#gallery1 #pos4:checked ~ #gallery-right .slide-prev [for="pos3"],
+#gallery1 #pos4:checked ~ #gallery-right .slide-next [for="pos5"],
+#gallery1 #pos5:checked ~ #gallery-right .slide-prev [for="pos4"],
+#gallery1 #pos5:checked ~ #gallery-right .slide-next [for="pos6"],
+#gallery1 #pos6:checked ~ #gallery-right .slide-prev [for="pos5"],
+#gallery1 #pos6:checked ~ #gallery-right .slide-next [for="pos7"],
+#gallery1 #pos7:checked ~ #gallery-right .slide-prev [for="pos6"],
+#gallery1 #pos7:checked ~ #gallery-right .slide-next [for="pos8"],
+#gallery1 #pos8:checked ~ #gallery-right .slide-prev [for="pos7"] {z-index: 10;}
+
+/*#gallery1 #pos2:checked ~ */
+
 #gallery .slide-btn {font-size: 20px; transform: scale(1.5, 3); position: relative;}
 #gallery label {position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 10; cursor: pointer;}
 #img-list {width: 80%; overflow: hidden;}
@@ -71,8 +138,8 @@ header a {color: #000;}
 #img-list p {font-size: 13px;}
 #img-list .gallery-text:hover {opacity: 1;}
 
-#pos1:checked ~ #img-list > div {margin-left: 0;}
-#pos2:checked ~ #img-list > div {margin-left: -100%;}
+#gallery #pos1:checked ~ #img-list > div {margin-left: 0;}
+#gallery #pos2:checked ~ #img-list > div {margin-left: -100%;}
 
 /*Contacts*/
 #contacts {display: flex; margin: 0 auto; width: 1000px; height: 400px; box-shadow: 1px 1px 3px #000; position: relative; z-index: 10;}
