@@ -10,7 +10,11 @@
 <body>
 
 	<!-- Main-Visual -->
-	<section id="visual2">
+	<section id="visual2" class="visual">
+
+		<input type="radio" name="slide" id="slide1" checked>
+		<input type="radio" name="slide" id="slide2">
+		<input type="radio" name="slide" id="slide3">
 
 		<div class="visual-text">
 
@@ -22,6 +26,27 @@
 			<!-- 바로가기링크 -->
 			<button class="btn">바로가기</button>
 
+		</div>
+
+		<div class="slide">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+
+		<div class="btns">
+			<div>
+				<div class="slide-btn prev">
+					<label class="none">&lt;</label>
+					<label for="slide1">&lt;</label>
+					<label for="slide2">&lt;</label>
+				</div>
+				<div class="slide-btn next">
+					<label for="slide2">&gt;</label>
+					<label for="slide3">&gt;</label>
+					<label class="none">&gt;</label>
+				</div>
+			</div>
 		</div>
 
 	</section>
