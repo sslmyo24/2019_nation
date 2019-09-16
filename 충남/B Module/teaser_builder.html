@@ -13,5 +13,40 @@
 </head>
 <body>
 	
+	<div id="admin">
+		<div id="page-manager">
+			<h2>페이지 관리</h2>
+		
+			<button id="page-insert" class="btn">페이지추가</button>
+		
+			<div id="page-list">
+				<h3>페이지목록</h3>
+				<ul>
+					<li><span class="name">Page1</span><button type="button" class="page-update">페이지수정</button></li>
+					<li><span class="name">Page2</span><button type="button" class="page-update">페이지수정</button></li>
+					<li><span class="name">Page3</span><button type="button" class="page-update">페이지수정</button></li>
+				</ul>
+			</div>
+		</div>
+				
+		<div class="preview">
+			
+		</div>
+	
+	</div>
+
+	<div class="modal" id="update">
+		<div class="wrap">
+			<button type="button" class="modal-close">X</button>
+			<form method="post">
+				<div><input type="text" name="code" placeholder="고유코드"></div>
+				<div><input type="text" name="title" placeholder="title"></div>
+				<div><input type="text" name="description" placeholder="description"></div>
+				<div><input type="text" name="keyword" placeholder="keyword"></div>
+				<button type="submit" class="btn">전송</button>
+			</form>
+		</div>
+	</div>
+
 </body>
 </html>
