@@ -82,7 +82,7 @@ button {margin: 0 auto;}
 #slide3:checked ~ .btns .next > .none {display: block;}
 
 /*Contents*/
-.content {width: 1500px; margin: 0 auto; padding: 70px 0;}
+.content {padding: 70px 0;}
 .content > h2 {font-size: 25px; color: #2c2e50; text-align: center; font-weight: normal; margin-bottom: 50px;}
 
 /*Features*/

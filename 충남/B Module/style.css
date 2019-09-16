@@ -82,7 +82,7 @@ button {margin: 0 auto;}
 #slide3:checked ~ .btns .next > .none {display: block;}
 
 /*Contents*/
-.content {width: 1500px; margin: 0 auto; padding: 70px 0;}
+.content {padding: 70px 0;}
 .content > h2 {font-size: 25px; color: #2c2e50; text-align: center; font-weight: normal; margin-bottom: 50px;}
 
 /*Features*/
@@ -206,17 +206,20 @@ footer {padding: 0 100px; background: #333 ; height: 150px; display: flex; justi
 
 
 /*teaser_builder*/
-#admin {display: flex; background: #f4f6fc; padding: 30px; height: 100vh; box-sizing: border-box;}
+#admin {display: flex; background: #f4f6fc; padding: 10px; height: 100vh; box-sizing: border-box; justify-content: space-between;}
 #admin > div {background: #fff; box-sizing: border-box; box-shadow: 0 0 10px #eef; border-radius: 5px}
+#admin > div:not(#preview) {padding: 30px; box-sizing: border-box; background: #fff;}
+#admin h2 {font-size: 17px;}
+#page-insert, #layout-insert {margin-top: 20px; padding: 0; font-size: 13px; width: 100%;}
 
-#page-manager {padding: 30px; box-sizing: border-box; background: #fff;}
-#page-manager > h2 {font-size: 17px;}
-#page-insert {margin-top: 20px; padding: 0; font-size: 13px; width: 100%;}
+#page-manager {width: 230px;}
 
-#page-list {margin-top: 30px;}
-#page-list > h3 {font-size: 15px; margin-bottom: 10px;}
-#page-list li {border-bottom: 1px solid #ddd; height: 50px; display: flex; align-items: center; box-sizing: border-box; padding: 0 10px;}
-#page-list .name {font-size: 15px; margin-right: 20px; cursor: pointer; font-weight: bold; width: 100px;}
+.list {margin-top: 30px;}
+.list > h3 {font-size: 15px; margin-bottom: 10px;}
+.list li {border-bottom: 1px solid #ddd; height: 50px; display: flex; align-items: center; box-sizing: border-box; padding: 0 10px;}
+#page-list .name {font-size: 15px; margin-right: 20px; font-weight: bold; width: 60px; cursor: pointer; transition: .3s;}
+#page-list li.active > .name,
+#page-list .name:hover {color: #1dd2af;}
 #page-list .page-update {border: none; background: #1dd2af; color: #fff; font-size: 9px; padding: 10px; cursor: pointer;}
 
 .modal {position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,.5); display: none; opacity: 0; align-items: center; justify-content: center;}
@@ -228,3 +231,10 @@ footer {padding: 0 100px; background: #333 ; height: 150px; display: flex; justi
 .modal form input:focus {border-color: #1dd2af;}
 #new-page-name {width: 100px; border: none; border-bottom: 1px solid #aaa; height: 30px;}
 
+#preview {width: calc(87% - 270px); overflow-y: auto; height: 100%;}
+
+#page-edit {width: 13%;}
+#template-list {display: none;}
+#template-list li {font-size: 15px; cursor: pointer; transition: .3s;}
+#template-list li.active,
+#template-list li:hover {color: #1dd2af;}
