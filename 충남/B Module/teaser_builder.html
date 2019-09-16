@@ -22,9 +22,9 @@
 			<div id="page-list">
 				<h3>페이지목록</h3>
 				<ul>
-					<li><span class="name">Page1</span><button type="button" class="page-update">페이지수정</button></li>
-					<li><span class="name">Page2</span><button type="button" class="page-update">페이지수정</button></li>
-					<li><span class="name">Page3</span><button type="button" class="page-update">페이지수정</button></li>
+					<li><span class="name">Page1</span><button type="button" class="page-update modal-btn" data-idx="" data-target="update">페이지수정</button></li>
+					<li><span class="name">Page2</span><button type="button" class="page-update modal-btn" data-idx="" data-target="update">페이지수정</button></li>
+					<li><span class="name">Page3</span><button type="button" class="page-update modal-btn" data-idx="" data-target="update">페이지수정</button></li>
 				</ul>
 			</div>
 		</div>
@@ -40,9 +40,11 @@
 			<button type="button" class="modal-close">X</button>
 			<form method="post">
 				<div><input type="text" name="code" placeholder="고유코드"></div>
+				<div><input type="text" name="name" placeholder="페이지 이름"></div>
 				<div><input type="text" name="title" placeholder="title"></div>
 				<div><input type="text" name="description" placeholder="description"></div>
 				<div><input type="text" name="keyword" placeholder="keyword"></div>
+				<input type="hidden" name="idx">
 				<button type="submit" class="btn">전송</button>
 			</form>
 		</div>
