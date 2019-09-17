@@ -169,7 +169,7 @@ const selectTemplate = function (e) {
 	$(".edit").hide()
 	if ($(this).hasClass('active')) selectType = null
 	else {
-		selectType = this.dataset.type
+		selectType = this.dataset.type.replace('&',"")
 		$('.template.active').removeClass('active')
 	}
 	$(this).toggleClass('active')
@@ -214,7 +214,7 @@ const startSetting = _ => {
 			else $(`.hide-btn[data-target="p"]`).show()
 			if ($(".template.active button").hasClass('hide')) $(`.show-btn[data-target="button"]`).show()
 			else $(`.hide-btn[data-target="button"]`).show()
-			$(".template.active *:not(.img), .template.active img").addClass('changeable')
+			$(".template.active article > *:not(.img), .template.active img").addClass('changeable')
 			$(".template.active h3, .template.active p").addClass('styleChange')
 			$(".template.active button").addClass('urlChange')
 			$(".template.active img").addClass('imgChange')
