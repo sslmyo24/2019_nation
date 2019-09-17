@@ -26,23 +26,23 @@ header > .navi a {color: #000;}
 
 #gnb > ul {display: flex;}
 #gnb li:not(:last-child) {text-align: center; margin-right: 20px;}
-#gnb li > a {font-size: 15px;}
-#gnb li:hover > a {text-decoration: underline; font-weight: bold; color: #2c2e50;}
+#gnb li > a {font-size: 15px; font-weight: bold; color: #777;}
+#gnb li:hover > a {text-decoration: underline; color: #2c2e50;}
 
 
 /*Main-Visual*/
 .visual {height: 600px; position: relative; display: flex; justify-content: center; align-items: center;}
-.visual:before, .visual > .slide {position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
-.visual:before {background: #2c2e50;  z-index: 10; display: block; content: "";}
+.visual:before, .visual > .slide, .visual > .slide-section {position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
+.visual:before {background: #2c2e50;  opacity: .5; z-index: 10; display: block; content: "";}
 .visual-text {color: #fff; position: relative; z-index: 20; text-align: center;}
-.visual-text > h1 {font-size: 40px;}
-.visual-text > p {font-size: 15px; width: 500px; padding: 20px 0 30px 0; letter-spacing: -1px}
-button {margin: 0 auto;}
+.visual-text > h1 {font-size: 40px; margin-bottom: 20px;}
+.visual-text > p {font-size: 15px; width: 500px; padding-bottom: 30px; letter-spacing: -1px}
+.visual-text > button {margin: 0 auto;}
 
 /*visual1*/
-#visual1 > .slide {opacity: 0; z-index: 20;}
-#visual1 > .slide:nth-child(1) {background: url(./img/visual/2.jpg) no-repeat center / cover; animation: slide1 15s infinite;}
-#visual1 > .slide:nth-child(2) {background: url(./img/visual/7.jpg) no-repeat center / cover; animation: slide2 15s infinite;}
+#visual1 > .slide {opacity: 0; z-index: 5;}
+#visual1 > .slide:nth-child(1) {background: url(./img/visual/2.jpg) no-repeat center / cover; animation: slide1 10s infinite;}
+#visual1 > .slide:nth-child(2) {background: url(./img/visual/7.jpg) no-repeat center / cover; animation: slide2 10s infinite;}
 
 @keyframes slide1 {
 	100%, 0%, 45% {opacity: .7;}
@@ -56,11 +56,11 @@ button {margin: 0 auto;}
 
 /*visual2*/
 #visual2 {overflow: hidden;}
-#visual2 > .slide {width: 300%; transition: .5s;}
-#visual2 > .slide > div {float: left; width: calc(100%/3); height: 100%;}
-#visual2 > .slide > div:nth-child(1) {background: url(./img/visual/1.jpg) no-repeat center / cover;}
-#visual2 > .slide > div:nth-child(2) {background: url(./img/visual/2.jpg) no-repeat center / cover;}
-#visual2 > .slide > div:nth-child(3) {background: url(./img/visual/3.jpg) no-repeat center / cover;}
+#visual2 > .slide-section {width: 300%; transition: .5s; height: 100%;}
+#visual2 .slide {float: left; width: calc(100%/3); height: 100%;}
+#visual2 .slide:nth-child(1) {background: url(./img/visual/1.jpg) no-repeat center / cover;}
+#visual2 .slide:nth-child(2) {background: url(./img/visual/2.jpg) no-repeat center / cover;}
+#visual2 .slide:nth-child(3) {background: url(./img/visual/3.jpg) no-repeat center / cover;}
 
 #visual2 > .btns {position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex;align-items: center; z-index: 10;}
 #visual2 > .btns > div {display: flex; justify-content: space-between; height: 60px; width: 100%;}
@@ -69,9 +69,9 @@ button {margin: 0 auto;}
 #visual2 label:not(.none) {background: #1dd2af; cursor: pointer;}
 #visual2 .none {background: rgba(255,255,255,.2);}
 
-#slide1:checked ~ .slide {left: 0;}
-#slide2:checked ~ .slide {left: -100%;}
-#slide3:checked ~ .slide {left: -200%;}
+#slide1:checked ~ .slide-section {left: 0;}
+#slide2:checked ~ .slide-section {left: -100%;}
+#slide3:checked ~ .slide-section {left: -200%;}
 
 #slide1:checked ~ .btns .prev > .none,
 #slide1:checked ~ .btns .next > [for="slide2"],
@@ -213,37 +213,50 @@ footer {padding: 0 100px; background: #333 ; height: 150px; display: flex; justi
 #admin > div > button,
 #admin .edit > button {margin-top: 20px; padding: 0; font-size: 13px; width: 100%;}
 
-#page-manager {width: 230px;}
+#page-manager {width: 260px;}
 
+.mini-btn {border: none; background: #1dd2af; color: #fff; font-size: 9px; padding: 10px; cursor: pointer;}
 .list {margin-top: 30px;}
 .list > h3 {font-size: 15px; margin-bottom: 10px;}
-.list li {border-bottom: 1px solid #ddd; height: 50px; display: flex; align-items: center; box-sizing: border-box; padding: 0 10px;}
-.list input[type="text"] {border: none; outline: none; border-bottom: 1px solid #aaa; height: 30px;}
+.list li {border-bottom: 1px solid #ddd; height: 50px; display: flex; align-items: center; box-sizing: border-box; padding: 0 10px; justify-content: space-between; width: 100%; box-sizing: border-box;}
+.list input[type="text"] {border: none; outline: none; border-bottom: 1px solid #aaa; height: 30px; width: calc(100% - 20px);}
+.list a {color: #000;}
+.list span {font-size: 13px;}
 #page-list .name {font-size: 15px; margin-right: 20px; font-weight: bold; width: 60px; cursor: pointer; transition: .3s;}
 #page-list li.active > .name,
 #page-list .name:hover {color: #1dd2af;}
-#page-list .page-update {border: none; background: #1dd2af; color: #fff; font-size: 9px; padding: 10px; cursor: pointer;}
 #new-page-name {width: 100px;}
 
 .modal {position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,.5); display: none; opacity: 0; align-items: center; justify-content: center; z-index: 1000;}
-.modal > .wrap {padding: 30px; background: #fff; position: relative;}
+.modal > .wrap {padding: 30px; background: #fff; position: relative; z-index: 1500}
 .modal .modal-close {position: absolute; top: 10px; right: 10px; background: none; border: none; outline: none; cursor: pointer;}
 .modal form {margin-top: 20px;}
-.modal form > div {margin-bottom: 10px; width: 300px;}
-.modal span {margin-right: 20px;}
-.modal form input {border: none; border-bottom: 1px solid #aaa; height: 30px; width: 100%; outline: none; transition: .5s;}
-.modal form input:focus {border-color: #1dd2af;}
+.modal form > div {margin-bottom: 10px; width: 300px; line-height: 30px;}
+.modal span {margin-right: 20px; font-size: 13px;}
+.modal input {border: none; border-bottom: 1px solid #aaa; height: 30px; outline: none; transition: .5s;}
+.modal input:focus {border-color: #1dd2af;}
+#update input {width: 100%;}
 
-#preview {width: calc(87% - 270px); overflow-y: auto; height: 100%;}
+#preview {width: calc(100% - 500px); overflow-y: auto; height: 100%;}
 #preview .template {cursor: pointer;}
 #preview .template.active {position: relative;}
-#preview .template.active:before {border: 5px solid red; content: ""; display: block; position: absolute; width: 100%; height: 100%; top: 0; left: 0; box-sizing: border-box; z-index: 100}
+#preview .template.active:before {border: 5px solid red; content: ""; display: block; position: absolute; width: 100%; height: 100%; top: 0; left: 0; box-sizing: border-box; z-index: 20;}
 
-#page-edit {width: 13%; overflow-y: auto;}
-#template-list {display: none;}
+#page-edit {width: 230px; overflow-y: auto;}
+#page-edit > button {position: relative; z-index: 10;}
+#template-list {margin-top: -430px; transition: opacity .3s, margin .5s; opacity: 0}
+#template-list.active {margin-top: 20px; opacity: 1; transition: opacity 1s, margin .1s;}
 #template-list li {font-size: 15px; cursor: pointer; transition: .3s;}
 #template-list li.active,
 #template-list li:hover {color: #1dd2af;}
 
 .edit {display: none;}
 .remove-btn {background: #aaa; width: 20px; height: 20px; border-radius: 50%; border: none; cursor: pointer; color: #fff; outline: none;}
+*.hide, .show-btn, .hide-btn {display: none;}
+.titleChange {display: flex; font-size: 13px; margin-top: 30px;}
+.titleChange > input {width: 80px; border: none; outline: none; border-bottom: 1px solid #aaa; transition: .3s; margin-left: 10px;}
+.titleChange > input:focus {border-color: #1dd2af;}
+
+.changeable {position: relative; z-index: 1000}
+#context form > div {display: none;}
+

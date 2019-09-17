@@ -30,7 +30,7 @@ const Model = new class {
 	}
 }
 
-let selectIdx = null, selectType = null
+let selectIdx = null, selectType = null, setting = false
 const Page = class {
 
 	constructor () {
@@ -51,7 +51,7 @@ const Page = class {
 		const target = $("#page-list > ul")
 		$("li", target).remove()
 		if (list === false) list = await this.pagelist
-		for (const v of list) target.append(`<li data-idx="${v.idx}"><span class="name">${v.name}</span><button type="button" class="page-update modal-btn" data-target="update">페이지수정</button></li>`)
+		for (const v of list) target.append(`<li data-idx="${v.idx}"><span class="name">${v.name}</span><button type="button" class="mini-btn page-update modal-btn" data-target="update">페이지수정</button></li>`)
 	}
 
 	async getHTML (url) {
@@ -67,6 +67,16 @@ const Page = class {
 	updateHTML () {
 		const html = $("#preview > div").html()
 		Model.query(`UPDATE layout SET html = ? where pidx = ?`, [html.replace('template active', 'template'), selectIdx])
+	}
+
+	imgChange (event, callback)  {
+		const file = Array.from(event.target.files)
+		file.forEach((v, k) => {
+			const reader = new FileReader()
+			reader.readAsDataURL(v)
+			reader.onload = callback(reader, k)
+		})
+		setTimeout(page.updateHTML)
 	}
 }
 
@@ -95,6 +105,7 @@ const modalOpen = async function (e) {
 const modalClose = function (id) {
 	const target = typeof id !== 'string' ? $(this).parents('.modal') : $(`#${id}`)
 	target.fadeOut(300, function () { $(this).css({'opacity': '0'}) })
+	$("input", target).val(null)
 }
 
 const addPage = e => {
@@ -105,7 +116,6 @@ const addPage = e => {
 			const lastIdx = await Model.rowCount(`pagelist`)
 			Model.query(`INSERT INTO layout (pidx, html) values(?, ?)`, [lastIdx, page.default])
 		})
-		
 	}
 }
 
@@ -135,6 +145,9 @@ const removePage = _ => {
 const preview = async function () {
 	const parent = $(this).parent()
 	if (parent.hasClass('active')) return
+	setting = false
+	selectType = null
+	$('.edit').hide()
 	$('#page-list .active').removeClass('active')
 	parent.addClass('active')
 	selectIdx = ~~parent[0].dataset.idx
@@ -151,7 +164,8 @@ const newTemplate = async function () {
 	.then(page.updateHTML)
 }
 
-const selectTemplate = function () {
+const selectTemplate = function (e) {
+	e.stopPropagation()
 	$(".edit").hide()
 	if ($(this).hasClass('active')) selectType = null
 	else {
@@ -169,28 +183,56 @@ const layoutReset = function () {
 
 const startSetting = _ => {
 	if (selectType === null) return
+	setting = true
+	$('.changeable').removeClass('changeable')
 	$(`.edit`).hide()
 	$(`#${selectType}-edit`).show()
 	switch (selectType) {
 		case 'header':
-			const html = $("#gnb > ul").html() + `<li><input type="text" id="new-menu"></li>`
+			const html = $("#gnb > ul").html() + `<li class="input"><input type="text" id="new-menu"></li>`
 			const reg = new RegExp('</a></li>', 'g')
 			$("#menu-list > ul").html(html.replace(reg, `</a><button type="btn" class="remove-btn">x</button></li>`))
 			if ($("#menu-list li").length >= 6) $("#menu-list li:last-child").remove()
 			break;
+		case 'Visual':
+			if ($(".visual-text > h1").hasClass('hide')) $(`.show-btn[data-target="h1"]`).show()
+			else $(`.hide-btn[data-target="h1"]`).show()
+			if ($(".visual-text > p").hasClass('hide')) $(`.show-btn[data-target="p"]`).show()
+			else $(`.hide-btn[data-target="p"]`).show()
+			if ($(".visual-text > button").hasClass('hide')) $(`.show-btn[data-target="button"]`).show()
+			else $(`.hide-btn[data-target="button"]`).show()
+			$(".visual-text > *").addClass('changeable')
+			$(".visual-text > *:not(button)").addClass('styleChange')
+			$(".visual-text > button").addClass('urlChange')
+			break;
+		case 'Features':
+			if ($(".template.active h3").hasClass('hide')) $(`.show-btn[data-target="h3"]`).show()
+			else $(`.hide-btn[data-target="h3"]`).show()
+			if ($(".template.active img").hasClass('hide')) $(`.show-btn[data-target="img"]`).show()
+			else $(`.hide-btn[data-target="img"]`).show()
+			if ($(".template.active p").hasClass('hide')) $(`.show-btn[data-target="p"]`).show()
+			else $(`.hide-btn[data-target="p"]`).show()
+			if ($(".template.active button").hasClass('hide')) $(`.show-btn[data-target="button"]`).show()
+			else $(`.hide-btn[data-target="button"]`).show()
+			$(".template.active *:not(.img), .template.active img").addClass('changeable')
+			$(".template.active h3, .template.active p").addClass('styleChange')
+			$(".template.active button").addClass('urlChange')
+			$(".template.active img").addClass('imgChange')
+			break;
 	}
+
+	$(".titleChange > input").val($(".template.active h2").text())
 }
 
 const logoChange = e => {
-	modalClose('logo')
-	const file = e.target.files[0]
-	const reader = new FileReader()
-	reader.readAsDataURL(file)
-	reader.onload = _ => {
-		e.target.value = null
-		$("#site-logo img").attr('src', reader.result)
-		page.updateHTML()
+	const callback = (reader, idx) => {
+		return _ => {
+			$("#site-logo img").attr('src', reader.result)
+			modalClose('logo')
+		}
 	}
+
+	page.imgChange(e, callback)
 }
 
 const addMenu = function (e) {
@@ -200,7 +242,7 @@ const addMenu = function (e) {
 			alert('메뉴는 5개 이내여야 합니다.')
 			return false
 		}
-		parent.before(`<li><a href="#">${e.target.value}</a><button type="btn" class="remove-btn"></button></li>`)
+		parent.before(`<li><a href="#">${e.target.value}</a><button type="btn" class="remove-btn">x</button></li>`)
 		$("#gnb > ul").append(`<li><a href="#">${e.target.value}</a></li>`)
 		if (len === 4) parent.remove()
 		page.updateHTML()
@@ -208,16 +250,85 @@ const addMenu = function (e) {
 }
 
 const removeMenu = function () {
-	const len = $("#menu-list li:not(.input)").length
+	const len = $("#menu-list li:not(.input)").length, parent = $(this).parent(), idx = parent.index()
 	if (len <= 3) {
 		alert('메뉴는 3개 이상이어야합니다.')
 		return false
 	}
-	if (len === 5) $(this).parents('ul').append(`<li><input type="text" id="new-menu"></li>`)
-	$(this).parent().remove()
+	if (len === 5) $(this).parents('ul').append(`<li class="input"><input type="text" id="new-menu"></li>`)
+	parent.remove()
+	$("#gnb li").eq(idx).remove()
+	page.updateHTML()
+}
+
+const toggleElement = back => {
+	return function () {
+		if (back === 'hide') $(`.template.active ${this.dataset.target}`).removeClass('hide')
+		else if (back === 'show') $(`.template.active ${this.dataset.target}`).addClass('hide')
+		$(this).parent().find(`.${back}-btn`).show()
+		$(this).hide()
+		page.updateHTML()
+	}
+}
+
+const changeVisual = e => {
+	const callback = (reader, idx) => {
+		return _ => {
+			$(`.slide:nth-child(${idx+1})`).attr('style', `background:url(${reader.result}) no-repeat center / cover !important`)
+			modalClose('visual')
+		}
+	}
+
+	page.imgChange(e, callback)
+}
+
+let mouseDown = [], selectElement = null
+const showContextBox = function (e) {
+	if (selectType === null || setting === false) return
+	if (e.which === 3 && mouseDown.indexOf(this) !== -1) {
+		selectElement = this
+		const x = e.clientX, y = e.clientY
+		$("#context.modal > .wrap").css({"top": `${y}px`, "left": `${x}px`})
+		if ($(this).hasClass('styleChange')) $("#context.modal .style").show()
+		if ($(this).hasClass('urlChange')) $("#context.modal .url").show()
+		if ($(this).hasClass('imgChange')) $("#context.modal .img").show()
+		$("#context.modal").show()
+	}
+
+	mouseDown = []
+}
+
+const hideContextBox = function () {
+	$(this).find('form > div').hide()
+	$(this).hide()
+}
+
+const changeStyle = e => {
+	e.preventDefault()
+	const text = e.target.text.value
+	const textColor = e.target.textColor.value
+	const fontSize = e.target.fontSize.value
+	const url = e.target.url.value
+
+	if (text != '') $(selectElement).text(text)
+	if (textColor != '') selectElement.style.color = '#'+textColor
+	if (fontSize != '') selectElement.style.fontSize = fontSize+"px"
+	if (url != '') $(selectElement).attr('onclick', `location.replace('${url}')`)
+
+	selectElement = null
+	e.target.reset()
+	$("#context.modal").hide()
+
+	page.updateHTML()
+}
+
+const titleChange = function () {
+	$(".template.active h2").text(this.value)
+	page.updateHTML()
 }
 
 $(loadOn)
+.on("contextmenu", e => e.preventDefault())
 .on("click", ".modal-btn", modalOpen)
 .on("click", ".modal-close", modalClose)
 .on("click", "#page-insert", _ => $("#page-list ul").append(`<li class="new"><input type="text" name="name" id="new-page-name" value="신규 페이지" /></li>`))
@@ -225,12 +336,28 @@ $(loadOn)
 .on("submit", "#update form", infoUpdate)
 .on("click", "#page-delete", removePage)
 .on("click", "#page-list li:not(.new) > .name", preview)
-.on("click", "#layout-insert", _ => $("#template-list").fadeIn())
+.on("click", "#layout-insert", _ => $("#template-list").toggleClass('active'))
 .on("click", "#template-list li", newTemplate)
 .on("click", "#preview .template", selectTemplate)
 .on("click", "#layout-reset", layoutReset)
 .on("click", "#layout-setting", startSetting)
-.on("change", "#logo input", logoChange)
-.on("keydown", "#new-menu", addMenu)
+.on("change", "#logo.modal input", logoChange)
+.on("keydown", "#new-menu", function (e) { if (e.keyCode === 13) $(this).blur() })
+.on("blur", "#new-menu", addMenu)
 .on("click", ".remove-btn", removeMenu)
-
+.on("click", ".show-btn", toggleElement('hide'))
+.on("click", ".hide-btn", toggleElement('show'))
+.on("change", "#visual.modal input", changeVisual)
+.on("mousedown", ".changeable", function () {mouseDown.push(this)})
+.on("mouseup", ".changeable", showContextBox)
+.on("click", "#context.modal", hideContextBox)
+.on("mousedown", "#context.modal", function (e) {
+	if (e.which === 3) {
+		$(this).hide()
+		selectElement = null
+	}
+})
+.on("click", "#context.modal, .wrap", e => e.stopPropagation())
+.on("submit", "#context.modal form", changeStyle)
+.on("keydown", ".titleChange > input", function (e) { if (e.keyCode === 13) $(this).blur() })
+.on("blur", ".titleChange > input", titleChange)
