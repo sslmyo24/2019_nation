@@ -92,15 +92,30 @@
 			</div>
 
 			<div id="GallerySlider-edit" class="edit">
-				<label for="feature-title" class="titleChange"><span>문단타이틀</span><input type="text" id="feature-title"></label>
+				<label for="gallery-title" class="titleChange"><span>문단타이틀</span><input type="text" id="gallery-title"></label>
 				<div class="list">
 					<ul>
 						<li><span>타이틀</span><button class="hide-btn mini-btn" data-target="h3">감추기</button><button class="show-btn mini-btn" data-target="h3">보이기</button></li>
-						<li><span>아이콘</span><button class="hide-btn mini-btn" data-target="img">감추기</button><button class="show-btn mini-btn" data-target="img">보이기</button></li>
-						<li><span>텍스트</span><button class="hide-btn mini-btn" data-target="p">감추기</button><button class="show-btn mini-btn" data-target="p">보이기</button></li>
-						<li><span>링크버튼</span><button class="hide-btn mini-btn" data-target="button">감추기</button><button class="show-btn mini-btn" data-target="button">보이기</button></li>
+						<li><span>서브타이틀</span><button class="hide-btn mini-btn" data-target=".sub">감추기</button><button class="show-btn mini-btn" data-target=".sub">보이기</button></li>
+						<li><span>텍스트</span><button class="hide-btn mini-btn" data-target=".desc">감추기</button><button class="show-btn mini-btn" data-target=".desc">보이기</button></li>
 					</ul>
 				</div>
+			</div>
+
+			<div id="Contacts-edit" class="edit">
+				<label for="contact-title" class="titleChange"><span>문단타이틀</span><input type="text" id="contact-title"></label>
+				<div class="list">
+					<ul>
+						<li><span>주소</span><button class="hide-btn mini-btn" data-target=".address">감추기</button><button class="show-btn mini-btn" data-target=".address">보이기</button></li>
+						<li><span>전화번호</span><button class="hide-btn mini-btn" data-target=".tel">감추기</button><button class="show-btn mini-btn" data-target=".tel">보이기</button></li>
+						<li><span>이메일</span><button class="hide-btn mini-btn" data-target=".email">감추기</button><button class="show-btn mini-btn" data-target=".email">보이기</button></li>
+					</ul>
+				</div>
+				<button class="btn modal-btn" data-target="background" type="button">배경색변경</button>
+			</div>
+
+			<div id="footer-edit" class="edit">
+				<button class="btn modal-btn" data-target="background" type="button">배경색변경</button>
 			</div>
 
 		</div>
@@ -148,7 +163,7 @@
 
 	<div class="modal" id="context" style="background: none; opacity: 1">
 		<div class="wrap" style="position: fixed;">
-			<form>
+			<form enctype="multipart/form-data">
 				<div class="url style">
 					<label for="context1">
 						<span>텍스트변경</span>
@@ -173,8 +188,29 @@
 						<input type="text" name="url" id="context4">
 					</label>
 				</div>
+				<div class="img">
+					<label for="context5">
+						<span>IMG</span>
+						<input type="file" name="img" id="context5">
+					</label>
+				</div>
 				<button class="btn" type="submit" style="height: 30px; margin: 0 auto; margin-top: 20px;">변경</button>
 			</form>
+		</div>
+	</div>
+
+	<div class="modal" id="background">
+		<div class="wrap">
+			<button type="button" class="modal-close">X</button>
+			<ul>
+				<li data-color="white"></li>
+				<li data-color="blue"></li>
+				<li data-color="green"></li>
+				<li data-color="yellow"></li>
+				<li data-color="orange"></li>
+				<li data-color="red"></li>
+				<li data-color="#333"></li>
+			</ul>
 		</div>
 	</div>
 

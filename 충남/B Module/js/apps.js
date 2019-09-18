@@ -1,3 +1,5 @@
+let selectIdx = null, selectType = null, setting = false, mouseDown = [], selectElement = null
+
 const Model = new class {
 	init () {
 		this.db = openDatabase("Builder", "1.0", "teaser builder", 2*1024*1024)
@@ -30,7 +32,6 @@ const Model = new class {
 	}
 }
 
-let selectIdx = null, selectType = null, setting = false
 const Page = class {
 
 	constructor () {
@@ -55,7 +56,7 @@ const Page = class {
 	}
 
 	async getHTML (url) {
-		const doc = await fetch(url).then(res => res.text()).then(html => {
+		const doc = await fetch(url, {cache: "no-cache"}).then(res => res.text()).then(html => {
 			const parser = new DOMParser()
 			return parser.parseFromString(html, 'text/html')
 		})
@@ -69,8 +70,8 @@ const Page = class {
 		Model.query(`UPDATE layout SET html = ? where pidx = ?`, [html.replace('template active', 'template'), selectIdx])
 	}
 
-	imgChange (event, callback)  {
-		const file = Array.from(event.target.files)
+	imgChange (target, callback)  {
+		const file = Array.from(target.files)
 		file.forEach((v, k) => {
 			const reader = new FileReader()
 			reader.readAsDataURL(v)
@@ -178,6 +179,7 @@ const selectTemplate = function (e) {
 const layoutReset = function () {
 	if (selectIdx === null) return
 	$("#preview > div").html(page.default)
+	$(".edit").hide()
 	page.updateHTML()
 }
 
@@ -219,6 +221,29 @@ const startSetting = _ => {
 			$(".template.active button").addClass('urlChange')
 			$(".template.active img").addClass('imgChange')
 			break;
+		case 'GallerySlider':
+			if ($(".template.active h3").hasClass('hide')) $(`.show-btn[data-target="h3"]`).show()
+			else $(`.hide-btn[data-target="h3"]`).show()
+			if ($(".template.active .sub").hasClass('hide')) $(`.show-btn[data-target=".sub"]`).show()
+			else $(`.hide-btn[data-target=".sub"]`).show()
+			if ($(".template.active .desc").hasClass('hide')) $(`.show-btn[data-target=".desc"]`).show()
+			else $(`.hide-btn[data-target=".desc"]`).show()
+			$(".template.active #gallery2 .text").css("z-index", 10)
+			$(".template.active article").css({"position": "relative", "z-index": 1000})
+			$(".template.active .text > *, .template.active .img").addClass('changeable')
+			$(".template.active .text > *").addClass('styleChange')
+			$(".template.active > #gallery2 article, .template.active > #gallery1 .img").addClass('imgChange')
+			break;
+		case 'Contacts':
+			if ($(".template.active .address").hasClass('hide')) $(`.show-btn[data-target=".address"]`).show()
+			else $(`.hide-btn[data-target=".address"]`).show()
+			if ($(".template.active .tel").hasClass('hide')) $(`.show-btn[data-target=".tel"]`).show()
+			else $(`.hide-btn[data-target=".tel"]`).show()
+			if ($(".template.active .email").hasClass('hide')) $(`.show-btn[data-target=".email"]`).show()
+			else $(`.hide-btn[data-target=".email"]`).show()
+			$(".template.active .contact-info").css({"position": "relative", "z-index": 1000})
+			$(".template.active .contact-info > div > *").addClass('changeable styleChange')
+			break;
 	}
 
 	$(".titleChange > input").val($(".template.active h2").text())
@@ -232,7 +257,7 @@ const logoChange = e => {
 		}
 	}
 
-	page.imgChange(e, callback)
+	page.imgChange(e.target, callback)
 }
 
 const addMenu = function (e) {
@@ -279,10 +304,9 @@ const changeVisual = e => {
 		}
 	}
 
-	page.imgChange(e, callback)
+	page.imgChange(e.target, callback)
 }
 
-let mouseDown = [], selectElement = null
 const showContextBox = function (e) {
 	if (selectType === null || setting === false) return
 	if (e.which === 3 && mouseDown.indexOf(this) !== -1) {
@@ -309,11 +333,25 @@ const changeStyle = e => {
 	const textColor = e.target.textColor.value
 	const fontSize = e.target.fontSize.value
 	const url = e.target.url.value
+	const img = e.target.img
 
 	if (text != '') $(selectElement).text(text)
 	if (textColor != '') selectElement.style.color = '#'+textColor
 	if (fontSize != '') selectElement.style.fontSize = fontSize+"px"
 	if (url != '') $(selectElement).attr('onclick', `location.replace('${url}')`)
+	if (img.value != '') {
+		const callback = (reader, idx) => {
+			return _ => {
+				$(selectElement).attr('style', `background:url(${reader.result}) no-repeat center / cover !important`)
+				selectElement = null
+				e.target.reset()
+				$("#context.modal").hide()
+			}
+		}
+
+		page.imgChange(img, callback)
+		return
+	}
 
 	selectElement = null
 	e.target.reset()
@@ -324,6 +362,13 @@ const changeStyle = e => {
 
 const titleChange = function () {
 	$(".template.active h2").text(this.value)
+	page.updateHTML()
+}
+
+const bgChange = function () {
+	if (selectType == 'Contacts') $(".template.active form").attr('style', `background: ${this.dataset.color}`)
+	if (selectType == 'footer') $("footer").attr('style', `background: ${this.dataset.color}`)
+
 	page.updateHTML()
 }
 
@@ -361,3 +406,4 @@ $(loadOn)
 .on("submit", "#context.modal form", changeStyle)
 .on("keydown", ".titleChange > input", function (e) { if (e.keyCode === 13) $(this).blur() })
 .on("blur", ".titleChange > input", titleChange)
+.on("click", "#background li", bgChange)
