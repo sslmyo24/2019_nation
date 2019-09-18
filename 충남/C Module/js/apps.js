@@ -77,7 +77,7 @@ const Page = class {
 	imgChange (target, loadAction)  {
 		const file = Array.from(target.files)
 
-		let imgURI = false, type = false
+		let imgURI = false
 		const before = url => {
 			const c = document.createElement('canvas')
 			const ctx = c.getContext('2d')
@@ -111,17 +111,11 @@ const Page = class {
 				c.height = newHeight
 				ctx.drawImage(this, 0, 0, newWidth, newHeight)
 				imgURI = c.toDataURL()
-				$("body").append(`<img src="${imgURI}" alt="" />`)
 			}
 		}
 
-		const callback = _ => {
-			return
-			$(target).parents('form').submit()
-			this.updateHTML()
-		}
-
 		file.forEach((v, k) => {
+
 
 			if (['jpeg', 'png'].indexOf(v.type.substring(6)) === -1) {
 				alert('jpg, png 파일만 가능합니다.')
@@ -135,8 +129,6 @@ const Page = class {
 				return
 			}
 
-			type = v.type
-
 			const reader = new FileReader()
 			reader.readAsDataURL(v)
 			reader.onload = _ => {
@@ -147,23 +139,26 @@ const Page = class {
 					if (imgURI !== false) {
 						clearInterval(timer)
 
-						// const binStr = atob(imgURI.toString().split(',')[1]),
-						// 	  arr = new Array(binStr.length)
+						fetch(imgURI)
+						.then(res => res.blob())
+						.then(blob => {
+							let type = v.type.substring(6)
+							if (type == 'jpeg') type = 'jpg'
 
-						// for (const i in binStr) arr[i] = binStr.charCodeAt(i)
+							const formData = new FormData()
+							formData.append('action', 'upload')
+							formData.append('img', blob)
+							formData.append('type', type)
 
-						// const blob = new Blob(new Uint8Array(arr), {type})
-						
-						const form = $(target).parents('form')
+							fetch('/builder', {
+								body: formData,
+								method: 'POST'
+							})
+						})
 
-						const formData = new FormData(form[0])
-						formData.append('img', imgURI)
-						// formData.append('img', blob)
-						formData.append('action', 'upload')
-						form.submit()
 
 						loadAction(imgURI, k)
-						.then(callback)
+						.then(this.updateHTML)
 					}
 				})
 			}
