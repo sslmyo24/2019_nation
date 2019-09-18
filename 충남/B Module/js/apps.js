@@ -219,7 +219,7 @@ const startSetting = _ => {
 			$(".template.active article > *:not(.img), .template.active img").addClass('changeable')
 			$(".template.active h3, .template.active p").addClass('styleChange')
 			$(".template.active button").addClass('urlChange')
-			$(".template.active img").addClass('imgChange')
+			$(".template.active img").addClass('iconChange')
 			break;
 		case 'GallerySlider':
 			if ($(".template.active h3").hasClass('hide')) $(`.show-btn[data-target="h3"]`).show()
@@ -316,6 +316,7 @@ const showContextBox = function (e) {
 		if ($(this).hasClass('styleChange')) $("#context.modal .style").show()
 		if ($(this).hasClass('urlChange')) $("#context.modal .url").show()
 		if ($(this).hasClass('imgChange')) $("#context.modal .img").show()
+		if ($(this).hasClass('iconChange')) $("#context.modal .icon").show()
 		$("#context.modal").show()
 	}
 
@@ -372,6 +373,30 @@ const bgChange = function () {
 	page.updateHTML()
 }
 
+const readIcons = e => {
+	const file = e.target.files[0]
+	const reader = new FileReader()
+	const target  = $("#icon-list")
+	reader.readAsDataURL(file)
+	reader.onload = _ => {
+		const img = new Image()
+		img.src = reader.result
+		img.onload = function () {
+			const width = this.width, height = this.height, w = width/10, h = height/7
+			target.css({"width": `${width}px`, "height": `${height}px`})
+			for (let i = 0; i < 7; i++) {
+				const y = (h*(i+1) - h*i)/2 + h*i
+				for (let j = 0; j < 10; j++) {
+					console.log(h*i, w*j)
+					const x = (w*(j+1) - w*j)/2 + w*j
+					const text = `<div style="width: ${w}px; height: ${h}px; background-image: url(${this.src}); background-position: ${w*j}px ${h*i}px; background-size: ${width}px ${height}px;"></div>`
+					target.append(text)
+				}
+			}
+		}
+	}
+}
+
 $(loadOn)
 .on("contextmenu", e => e.preventDefault())
 .on("click", ".modal-btn", modalOpen)
@@ -407,3 +432,4 @@ $(loadOn)
 .on("keydown", ".titleChange > input", function (e) { if (e.keyCode === 13) $(this).blur() })
 .on("blur", ".titleChange > input", titleChange)
 .on("click", "#background li", bgChange)
+.on("change", "#context6", readIcons)
