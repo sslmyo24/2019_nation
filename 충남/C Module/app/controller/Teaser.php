@@ -8,10 +8,13 @@
 
 		function get_data () {
 
-			$referer = null;
+			$referer = '/';
 			if (isset($_SERVER["HTTP_REFERER"])) {
 				$referer = explode("?", $_SERVER["HTTP_REFERER"]);
 				$referer = $referer[0];
+				$arr = explode("/", $referer);
+				$referer = "/";
+				for ($i = 3; $i < count($arr); $i++) $referer .= $arr[$i];
 			}
 
 			$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -42,16 +45,17 @@
 				);
 
 				foreach ($mobile_os_list as $preg => $name) {
+					$device = "Mobile";
 					if (preg_match($preg, $agent)) {
 						$os = $name;
-						$device = "Mobile";
 						break;
 					}
 				}
 			}
 
 			$browser_list = array(
-				"MSIE" => "Internet Explorer",
+				"Edge" => "Microsoft Edge",
+				"Trident" => "Internet Explorer",
 				"Firefox" => "Mozilla Firefox",
 				"Chrome" => "Google Chrome",
 				"Safari" => "Apple Safari",
@@ -61,7 +65,7 @@
 
 			foreach ($browser_list as $preg => $name) {
 				if (preg_match("/{$preg}/i", $agent)) {
-					if ($preg == 'MSIE' && preg_match("/Opera/i", $agent)) continue;
+					if ($preg == 'MSIE' && preg_match("/Opera/i", $agent))continue;
 					$browser = $name;
 					$ub = $preg;
 					break;
@@ -81,12 +85,12 @@
 
 			if ($version == null || $version == "") $version = "?";
 
-			DB::query("INSERT INTO statistic SET referer = ?, os = ?, browser = ?, version = ?, device = ?, date = now()", [$referer, $os, $browser, $version, $device]);
+			DB::query("INSERT INTO statistic SET referer = ?, os = ?, browser = ?, device = ?, date = now()", [$referer, $os, $browser." ".$version, $device]);
 		}
 
 		function teaser () {
 			$this->page_info = DB::fetch("SELECT title, description, keyword FROM page where code = ?", [$this->url->code]);
-			$this->get_data();
+			if ($this->url->type === 'teaser') $this->get_data();
 		}
 
 	}
