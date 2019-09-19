@@ -9,7 +9,9 @@
 
 			if (isset($get[0])) $url['type'] = $get[0];
 			else move("/admin");
-			if ($url['type'] !== 'admin' && $url['type'] !== 'builder') {
+
+			$arr = ['admin', 'builder', 'invite'];
+			if (!in_array($url['type'], $arr)) {
 				$url['code'] = $url['type'];
 				$url['type'] = 'teaser';
 			}

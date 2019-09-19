@@ -46,94 +46,124 @@
 		function statistic () {
 
 			if (isset($_GET['start_date'])) {
-				$option_list = array(
-					'referer' => '1,2,3,4,5,others',
-					'os' => 'Window,Linux,iOS,others',
-					'browser' => 'all',
-					'device' => 'all'
-				);
+				$option_list = ['referer', 'os', 'browser', 'device'];
 
 				$i = 1;
-				foreach ($option_list as $option => $type) {
+				foreach ($option_list as $option) {
 					$order = $option === "browser" ? "FIELD(os, 'Window', 'Linux', 'iOS')" : 'cnt desc';
+					if ($option === "referer") $order .= " limit 5";
 					$list = DB::fetchAll("SELECT count(*) as cnt, {$option} FROM statistic where date >= '{$_GET['start_date']}' and date <= '{$_GET['end_date']}' group by {$option} order by {$order}");
-					$this->draw_bar_graph($list, $option, $type, $i);
+					if ($option === "referer" && count($list) >= 5) {
+						$referers = [];
+						foreach ($list as $data) $referers[] = "'{$data->referer}'";
+						$referers = implode(",", $referers);
+						$list[] = (Object)array("cnt" => DB::rowCount("SELECT * FROM statistic where date >= '{$_GET['start_date']}' and date <= '{$_GET['end_date']}' and referer NOT in ({$referers})"), "referer" => "기타");
+					}
+					$this->draw_graph($list, $option, $i);
 					$i++;
  				}
 			}
 		}
 
-		function draw_bar_graph ($list, $standard, $type, $idx) {
+		function draw_graph ($list, $standard, $idx) {
 
-			$order = explode(",", $type);
-			$dataCnt = $type === 'all' ? count($list) : count($order);
+			$dataCnt = count($list);
 
 			$max = 0;
+			$sum = 0;
 			foreach ($list as $data) {
 				if ($max < $data->cnt) $max = $data->cnt;
+				$sum += $data->cnt;
 			}
 			$max = floor($max/10)*10 < $max ? (floor($max/10)+1)*10 : $max;
 
-			$text = 
-'<?php
+			$bar = $pie =
+'<?php';
 
-	// header("Content-Type: image/jpeg");
+			$bar .= '
+				$width = 1100;
+				$height = 400;
+				$xmargin = 60;
+				$ymargin = $height - $xmargin;
+				$xstart = $xmargin*10/3;
+				$xend = $width - $xmargin*4/3;
+				$ystart = $ymargin - 15;
+				$yend = 100;
+				$maxHeight = $ystart - $yend;
+				$xWidth = $xend - $xstart;
+				$barLen = 50;
+				$barMargin = 0;
+			';
 
-	$width = 700;
-	$height = 400;
-	$xmargin = 60;
-	$ymargin = $height - $xmargin;
-	$xstart = $xmargin + 80;
-	$xend = $width - 80;
-	$ystart = $ymargin - 15;
-	$yend = 100;
-	$maxHeight = $ystart - $yend;
-	$xWidth = $xend - $xstart;
-	$barLen = 30;
-	$barMargin = 0;
-';
+			$pie .= '
+				$width = 400;
+				$height = 400;
+				$pieW = 300;
+				$pieH = 300;
+			';
 
-			if ($dataCnt > 1) $text .=
-'	$barMargin = ($xWidth - $barLen*'.$dataCnt.')/('.$dataCnt.' - 1);';
+			if ($dataCnt > 1) $bar .= '$barMargin = ($xWidth - $barLen*'.$dataCnt.')/('.$dataCnt.' - 1);';
 	
-			$text .=
-'	$image = imagecreatetruecolor($width, $height);
+			$default = '
+				header("Content-Type: image/jpeg");
 
-	$black = imagecolorallocate($image, 0, 0, 0);
-	$bg = imagecolorallocate($image, 230, 230, 230);
-	// $text_color = imagecolorallocate($image, 44, 46, 80);
-	$bar = imagecolorallocate($image, 0, 160, 255);
+				$image = imagecreatetruecolor($width, $height);
 
-	imagefill($image, 0, 0, $bg);
-	imageline($image, $xmargin, 60, $xmargin, $ymargin, $black);
-	imageline($image, $xmargin, $ymargin, $width - 40, $ymargin, $black);
-	imagestring($image, 5, $xmargin + 20, 30, \''.$standard.'\', $black);
+				$black = imagecolorallocate($image, 0, 0, 0);
+				$bg = imagecolorallocate($image, 230, 230, 230);
+				imagefill($image, 0, 0, $bg);
+			';
 
-	imagestring($image, 4, $xmargin - 20, $yend, '.$max.', $black);
-	imagestring($image, 4, $xmargin - 20, ($yend + $ystart)/2, '.$max.'/2, $black);
-	imagestring($image, 4, $xmargin - 15, $ystart, 0, $black);
-';
+			$bar .= $default.'
+				imageline($image, $xmargin, 60, $xmargin, $ymargin, $black);
+				imageline($image, $xmargin, $ymargin, $width - 40, $ymargin, $black);
+				imagestring($image, 5, $xmargin + 20, 30, \''.$standard.'\', $black);
+
+				imagestring($image, 4, $xmargin - 20, $yend, '.$max.', $black);
+				imagestring($image, 4, $xmargin - 20, ($yend + $ystart)/2, '.$max.'/2, $black);
+				imagestring($image, 4, $xmargin - 15, $ystart, 0, $black);
+			';
+
+			$pie .= $default.'';
 
 			$i = 0;
+			$lastAngle = 0;
 			foreach ($list as $data) {
-				$len = strlen($data->$standard);
 
-				$text .= '
-	$h = $ystart - ('.$data->cnt.'/'.$max.'*$maxHeight);
-	imagefilledrectangle($image, $xstart + $barMargin*'.$i.', $ymargin, $xstart + $barLen + $barMargin*'.$i.', $h, $bar);
-	imagestring($image, 4, $xstart + 7 + $barMargin*'.$i.', $h - 20, '.$data->cnt.', $black);
-	imagestring($image, 2, $xstart - '.$len.' + $barMargin*'.$i.', $ystart + 20, \''.$data->$standard.'\', $black);
+				$num1 = rand(0, 255);
+				$num2 = rand(0, 255);
+				$num3 = rand(0, 255);
+
+				$color = '$color = imagecolorallocate($image, '.$num1.', '.$num2.', '.$num3.');';
+
+				$len = strlen($data->$standard);
+				$bar .= $color.'
+					$h = $ystart - ('.$data->cnt.'/'.$max.'*$maxHeight);
+					imagefilledrectangle($image, $xstart + $barMargin*'.$i.', $ymargin, $xstart + $barLen + $barMargin*'.$i.', $h, $color);
+					imagestring($image, 4, $xstart + 7 + $barMargin*'.$i.', $h - 20, '.$data->cnt.', $black);
+					imagestring($image, 3, $xstart - '.$len.' + $barMargin*'.$i.', $ystart + 20, \''.$data->$standard.'\', $black);
 				';
 
+				$angle = $data->cnt/$sum*360;
+
+				$pie .= $color.'
+					imagefilledarc($image, $width/2, $height/2, $pieW, $pieH, '.$lastAngle.', '.$lastAngle.'+'.$angle.', $color, IMG_ARC_PIE);
+				';
+
+				$lastAngle += $angle;
 				$i++;
 			}
 
-			$text .= '
-	imagejpeg($image);';
+			$bar .= 'imagejpeg($image);';
+			$pie .= 'imagejpeg($image);';
 
-			$file = fopen("./img/graph/stick{$idx}.php", "w");
-			fwrite($file, $text);
-			fclose($file);
+			$bar_file = fopen("./img/graph/bar{$idx}.php", "w");
+			fwrite($bar_file, $bar);
+			fclose($bar_file);
+
+			$pie_file = fopen("./img/graph/pie{$idx}.php", "w");
+			fwrite($pie_file, $pie);
+			fclose($pie_file);
 		}
 
 	}

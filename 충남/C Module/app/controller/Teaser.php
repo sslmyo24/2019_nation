@@ -8,72 +8,51 @@
 
 		function get_data () {
 
-			$referer = '/';
-			if (isset($_SERVER["HTTP_REFERER"])) {
-				$referer = explode("?", $_SERVER["HTTP_REFERER"]);
-				$referer = $referer[0];
-				$arr = explode("/", $referer);
-				$referer = "/";
-				for ($i = 3; $i < count($arr); $i++) $referer .= $arr[$i];
-			}
+			$referer = $_SERVER['SERVER_NAME'];
 
 			$agent = $_SERVER['HTTP_USER_AGENT'];
 
-			$device = $os = $browser = $ub = $version = false;
-
-			$pc_os_list = array(
+			$os = false;
+			$os_list = array(
 				'/win/i' => 'Window',
-				'/mac/i' => 'Mac OS',
 				'/linux/i' => 'Linux',
-				'/ubuntu/i' => 'Ubuntu'
+		        '/ip/i' => 'iOS'
 			);
 
-			foreach ($pc_os_list as $preg => $name) {
+			foreach ($os_list as $preg => $name) {
 				if (preg_match($preg, $agent)) {
 					$os = $name;
-					$device = "PC";
 					break;
 				}
 			}
+			if ($os === false) $os = '기타';
 
-			if ($device !== false) {
-				$mobile_os_list = array(
-			        '/ip/i' => 'iOS', 
-			        '/android/i' => 'Android', 
-			        '/blackberry/i' => 'BlackBerry', 
-			        '/webos/i' => 'Mobile'
-				);
+			$device = preg_match('/mobile/i', $agent) ? "Mobile" : "PC";
 
-				foreach ($mobile_os_list as $preg => $name) {
-					$device = "Mobile";
-					if (preg_match($preg, $agent)) {
-						$os = $name;
-						break;
-					}
-				}
-			}
-
-			$browser_list = array(
-				"Edge" => "Microsoft Edge",
-				"Trident" => "Internet Explorer",
-				"Firefox" => "Mozilla Firefox",
-				"Chrome" => "Google Chrome",
-				"Safari" => "Apple Safari",
-				"Opera" => "Opera",
-				"Netscape" => "Netscape"
-			);
-
-			foreach ($browser_list as $preg => $name) {
+			$browser = $ub = false;
+			$browser_list = ["Opera", "Edge", "Chrome", "Safari", "Firefox", "MSIE", "Trident"];
+			foreach ($browser_list as $preg) {
 				if (preg_match("/{$preg}/i", $agent)) {
-					if ($preg == 'MSIE' && preg_match("/Opera/i", $agent))continue;
-					$browser = $name;
-					$ub = $preg;
+					$browser = $ub = $preg;
 					break;
 				}
 			}
+			switch ($browser) {
+				case 'Chrome':
+					$browser = "Google Chrome";
+					break;
+				case 'MSIE':
+				case 'Trident':
+					$browser = "Internet Explorer";
+					break;
+				case 'Edge':
+					$browser = "Microsoft Edge";
+					break;
+			}
 
-			$known = array('Version', $ub, 'other');
-			$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+			$version = false;
+			$known = array('Version', $ub, 'other', 'rv:');
+			$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]?+(?<version>[0-9.|a-zA-Z.]*)#';
 			preg_match_all($pattern, $agent, $matches);
 
 			$i = count($matches['browser']);
@@ -82,8 +61,6 @@
 				else $version = $matches['version'][1];
 			}
 			else $version = $matches['version'][0];
-
-			if ($version == null || $version == "") $version = "?";
 
 			DB::query("INSERT INTO statistic SET referer = ?, os = ?, browser = ?, device = ?, date = now()", [$referer, $os, $browser." ".$version, $device]);
 		}
