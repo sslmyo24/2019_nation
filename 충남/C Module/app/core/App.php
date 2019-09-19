@@ -6,9 +6,16 @@
 
 		private static function set_url () {
 			$get = isset($_GET['url']) ? explode("/", $_GET['url']) : null;
+
 			if (isset($get[0])) $url['type'] = $get[0];
 			else move("/admin");
+			if ($url['type'] !== 'admin' && $url['type'] !== 'builder') {
+				$url['code'] = $url['type'];
+				$url['type'] = 'teaser';
+			}
+
 			$url['page'] = isset($get[1]) ? $get[1] : $url['type'];
+
 			$url['member'] = isset($_SESSION['member']);
 			return (Object)$url;
 		}
@@ -30,7 +37,10 @@
 			}
 
 			require_once("./app/view/header.php");
-			require_once("./app/view/{$this->url->type}/{$this->url->page}.php");
+
+			$page = $this->url->type === 'teaser' ? "teaser_{$this->url->code}" : $this->url->page;
+			require_once("./app/view/{$this->url->type}/{$page}.php");
+
 			require_once("./app/view/footer.php");
 		}
 

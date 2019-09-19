@@ -17,3 +17,9 @@
 			move($url);
 		}
 	}
+
+	function print_pre ($arr) {
+		echo "<pre>";
+		print_r($arr);
+		echo "</pre>";
+	}

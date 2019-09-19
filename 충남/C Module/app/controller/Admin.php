@@ -40,7 +40,9 @@
 
 		function logout () {
 			session_destroy();
-			move("/admin");
+			$back = explode("/",$_GET['back']);
+			if ($back[0] === 'admin' || $back[0] === 'builder') move("/admin");
+			else move("/{$_GET['back']}");
 		}
 
 		function admin () {

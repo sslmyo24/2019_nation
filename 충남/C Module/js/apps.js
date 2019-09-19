@@ -21,12 +21,12 @@ const Model = new class {
 
 	query (sql, arr = []) {
 		return new Promise (reso => {
-			this.db.transaction(tx => { tx.executeSql(sql, arr, (tx, res) => { reso(res) }, (tx,error) => { console.log(error) }) })
+			this.db.transaction(tx => { tx.executeSql(sql, arr, (tx, res) => { reso(res) }, (tx,error) => { console.log(sql, arr); console.log(error) }) })
 		})
 	}
 
 	async fetch (column, table, option = {arr:[], condition: false}) {
-		let sql = `SELECT ${column} FROM ${table}`
+		let sql = `SELECT ${column} FROM ${table} `
 		if (option.condition !== false) sql += option.condition
 		return Array.from((await Model.query(sql, option.arr)).rows)
 	}
@@ -70,7 +70,8 @@ const Page = class {
 	}
 
 	updateHTML () {
-		const html = $("#preview > div").html()
+		const reg1 = new RegExp('changeable', 'g'), reg2 = new RegExp('template', 'g')
+		const html = $("#preview > div").html().replace(reg1, "").replace(reg2, "")
 		Model.query(`UPDATE layout SET html = ? where pidx = ?`, [html.replace('template active', 'template'), selectIdx])
 	}
 
@@ -146,7 +147,7 @@ const Page = class {
 							if (type == 'jpeg') type = 'jpg'
 
 							const formData = new FormData()
-							formData.append('action', 'upload')
+							formData.append('action', 'imgUpload')
 							formData.append('img', blob)
 							formData.append('type', type)
 
@@ -204,12 +205,21 @@ const addPage = e => {
 	}
 }
 
-const infoUpdate = e => {
+const infoUpdate = async e => {
 	e.preventDefault()
 
+	const code = e.target.code.value
+
 	const reg = new RegExp(/^[0-9]+$/)
-	if (reg.test(~~e.target.code.value) === false) {
+	if (reg.test(~~code) === false) {
 		alert('고유코드는 숫자만 가능합니다.')
+		return false
+	}
+
+	const cnt = await Model.rowCount("pagelist", `where code = '${code}'`)
+	console.log(cnt)
+	if (cnt >= 1) {
+		alert('이미 존재하는 고유코드입니다')
 		return false
 	}
 
@@ -552,8 +562,30 @@ const timeCheck = _ => {
 		if (remain < 0) {
 			sessionStorage.clear()
 			clearInterval(timer)
-			location.replace('/admin/logout')
+			const back = window.location.href.replace('http://localhost/',"")
+			location.replace(`/admin/logout?back=${back}`)
 		}
+	})
+}
+
+const pageUpload = async function () {
+	if (selectIdx === null) {
+		alert('선택된 페이지가 없습니다.')
+		return
+	}
+
+	const data = (await Model.fetch("pagelist.*, layout.html", "pagelist  JOIN layout ON pagelist.idx = layout.pidx", {arr: [selectIdx], condition: "where pagelist.idx = ?"}))[0]
+	if (data.code === null) {
+		alert('고유코드가 누락되었습니다.')
+		return
+	}
+
+	const formData = new FormData()
+	formData.append('action', 'pageUpload')
+	for (const key in data) formData.append(key, data[key])
+	fetch('/builder', {
+		body: formData,
+		method: 'POST'
 	})
 }
 
@@ -594,3 +626,4 @@ $(loadOn)
 .on("blur", ".titleChange > input", titleChange)
 .on("click", "#background li", bgChange)
 .on("change", "#context6", readIcons)
+.on("click", "#page-upload", pageUpload)

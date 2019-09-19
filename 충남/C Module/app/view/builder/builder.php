@@ -1,12 +1,8 @@
 	<div id="admin">
 		<div id="header">
-		<?php if ($this->url->member): ?>
 			<a href="/admin/logout">로그아웃</a>
+			<a href="/builder/statistic">접속통계</a>
 			<span id="session-time">남은 시간 <span class="hour"></span>:<span class="min"></span>:<span class="sec"></span></span>
-		<?php else: ?>
-			<a href="/admin">로그인</a>
-			<a href="/admin/join">회원가입</a>
-		<?php endif; ?>
 		</div>
 
 		<div id="page-manager">
@@ -14,6 +10,7 @@
 		
 			<button id="page-insert" type="button" class="btn">페이지추가</button>
 			<button id="page-delete" type="button" class="btn">페이지삭제</button>
+			<button id="page-upload" type="button" class="btn">페이지 적용하기</button>
 		
 			<div id="page-list" class="list">
 				<h3>페이지목록</h3>

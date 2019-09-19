@@ -6,7 +6,7 @@
 
 		private static function init () {
 			if (is_null(self::$db)) {
-				$option = array(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+				$option = array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ);
 				self::$db = new \PDO("mysql:host=127.0.0.1;charset=utf8;dbname=magic","root","",$option);
 			}
 
@@ -16,9 +16,9 @@
 		public static function query ($sql, $val = []) {
 			$res = self::init()->prepare($sql);
 			if (!$res->execute($val)) {
-				echo $res;
-				print_r($val);
-				print_r(self::init()->errorInfo());
+				echo $sql;
+				print_pre($val);
+				print_pre(self::init()->errorInfo());
 				exit;
 			}
 
