@@ -3,13 +3,93 @@
 ul, li {list-style: none;}
 a {text-decoration: none;}
 input[type="radio"], input[type="checkbox"] {display: none;}
+::selection {background: #999; color: #fff;}
 
-header {background: #333; height: 100px; width: 1500px; padding: 0 calc(50% - 750px); display: flex; justify-content: space-between;}
-#gnb {height: 100%; width: 700px;}
-#gnb > ul {display: flex; height: 100%; justify-content: space-between;}
-#gnb .main-menu {height: 100%; position: relative;}
-#gnb a {color: #fff; transition: .3s; height: 100%; display: block; padding: 0 30px;}
-#gnb .main-menu > a {color: #fff; font-size: 15px; transition: .3s; line-height: 100px; height: 100%; display: block; padding: 0 30px; position: relative; z-index: 20; background: #333;}
-#gnb .main-menu > a:hover {background: #000; color: #1dd2af;}
-#gnb .sub-menu {position: absolute; top: 0; left: 0; width: 100%; transition: .3s top, .5s opacity; opacity: 0;}
-#gnb .main-menu > a:hover ~ .sub-menu {top: 100%; opacity: 1; background: #000;}
+/*header*/
+header > div {padding: 0 calc(50% - 750px); display: flex; justify-content: space-between; align-items: center;}
+header > .contact {height: 50px; background: #333;}
+header > .navigation {background: #fff; height: 100px;}
+
+/*contact*/
+header .admin-info {color: #fff; font-size: 13px;}
+header .admin-info > span:first-child {margin-right: 10px;}
+header .admin-info i {margin-right: 10px;}
+header .admin-info > span > span:nth-child(2) {margin-right: 5px;}
+
+/*member btn*/
+header button {border: none; background: #d83030; color: #fff; border-radius: 3px; height: 25px; padding: 0 10px; cursor: pointer;}
+header button:first-child {margin-right: 10px;}
+
+/*logo*/
+#site-logo {height: 100%; display: flex; align-items: center;}
+#site-logo > a {color: #000; font-weight: bolder; font-size: 25px;}
+
+/*navigation*/
+#menu-open {display: none;}
+
+#gnb {height: 100%; width: 800px;}
+#gnb .main-menu * {transition: .3s;}
+#gnb .main-menu {height: 100%; position: relative; float: left;}
+#gnb a {color: #000; height: 100%; display: block;}
+#gnb .main-menu > a {line-height: 100px; padding: 0 40px; font-size: 15px; font-weight: bold; position: relative; z-index: 200; background: #fff;}
+#gnb .sub-menu {position: relative; width: 100%; opacity: 0; z-index: 100; margin-top: -62px;}
+#gnb .sub-menu > li {height: 30px; background: #A52424; border-bottom: 1px solid #d83030;}
+#gnb .sub-menu a {line-height: 30px; text-align: center; font-size: 13px; color: #fff;}
+
+#gnb .main-menu:hover > a {background: #A52424; color: #fff;}
+#gnb .main-menu:hover > .sub-menu {opacity: 1; border-top: 1px solid #d83030; margin-top:0;}
+#gnb .sub-menu > li:hover {background: #fff;}
+#gnb .sub-menu > li:hover > a {color: #A52424;}
+
+/*visual*/
+#main-visual {height: 600px; position: relative;}
+#main-visual:before {position: absolute; content: ""; display: block; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,.5); z-index: 10}
+#main-visual > .slide {position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0;}
+#main-visual > .slide:nth-child(1) {animation: slide1 15s infinite; background: url(./img/image_52.jpg) no-repeat center / cover;}
+#main-visual > .slide:nth-child(2) {animation: slide2 15s infinite; background: url(./img/image_50.jpg) no-repeat center / cover;}
+#main-visual > .slide:nth-child(3) {animation: slide3 15s infinite; background: url(./img/image_12.jpg) no-repeat center / cover;}
+
+@keyframes slide1 {
+	100%, 0%, 28% {opacity: 1;}
+	33%, 95% {opacity: 0;}
+}
+
+@keyframes slide2 {
+	0%, 28% {opacity: 0;}
+	33%, 61% {opacity: 1;}
+	66%, 100% {opacity: 0;}
+}
+
+@keyframes slide3 {
+	100%, 0%, 61% {opacity: 0;}
+	66%, 95% {opacity: 1;}
+}
+
+#visual-text {color: #fff; font-weight: lighter; font-size: 60px; position: relative; z-index: 30; text-align: center; line-height: 600px;}
+
+/*intro*/
+#intro {width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 500px;}
+#intro > .img {height: 350px; width: 550px; background: url(./img/image_66.jpg) no-repeat center / cover;}
+#intro > .text {height: 300px; width: 700px;}
+
+/*mobile*/
+@media (max-width: 1000px) {
+	header > div {padding: 0 50px; width: auto;}
+	header > .navigation {flex-wrap: wrap;}
+	#menu-open {display: inline-block; font-size: 30px; color: #fff; width: 50px; height: 50px; background: #666; line-height: 50px; text-align: center; cursor: pointer; }
+	#site-logo, #menu-open {position: relative; z-index: 1000;}
+	#gnb {width: 100%; transform: translateY(-150%); opacity: 0; z-index: -1; transition: .5s;}
+	#gnb .main-menu {width: calc(100% + 100px); margin-left: -50px;}
+	#gnb a {padding: 0 !important; text-align: center;}
+
+	#menu:checked ~ #gnb {transform: translateY(0); opacity: 1; z-index: 100;}
+}
+
+@media (max-width: 500px) {
+	header > .contact {height: 100px; flex-wrap: wrap;}
+	header > .contact > div {width: 100%; display: flex; justify-content: center;}
+}
+
+@media (max-width: 480px) {
+	header > .navigation {background: #000;}
+}
