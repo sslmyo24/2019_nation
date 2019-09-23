@@ -1,0 +1,42 @@
+/*config*/
+* {margin: 0; padding: 0;}
+ul, li {list-style: none;}
+a {text-decoration: none;}
+input[type="radio"], input[type="checkbox"] {display: none;}
+
+
+/*header*/
+header > div {width: 1500px; padding: 0 calc(50% - 750px); display: flex; justify-content: space-between; align-items: center;}
+header > .contact {background: #0A0B0D; color: #fff; height: 50px;}
+header .admin-info > span {margin-right: 20px; font-size: 13px;}
+header .admin-info i {margin-right: 10px;}
+header .social > a {margin-left: 10px;}
+header .social img {max-width: 30px;}
+header > .navigation {height: 100px;}
+#gnb > ul {display: flex; justify-content: flex-end;}
+#gnb li {position: relative;}
+#gnb a {color: #000; font-size: 15px; padding: 0 20px; width: 100%; transition: .3s; height: 100px; display: block; box-sizing: border-box; line-height: 100px;}
+#gnb a:hover {background: #666D72; color: #fff;}
+#gnb li > ul {display: none;}
+
+
+/*visual*/
+#main-visual {height: 600px; position: relative; overflow: hidden;}
+#main-visual > .slide {position: absolute; width: 300%; height: 100%; top: 0; left: 0; animation: slide 8s infinite;}
+#main-visual > .slide > div {width: calc(100%/3); height: 100%; float: left;}
+#main-visual > .slide > div:nth-child(1) {background: url(./img/motor_2.jpg) no-repeat center / cover;}
+#main-visual > .slide > div:nth-child(2) {background: url(./img/motor_6.jpg) no-repeat center / cover;}
+#main-visual > .slide > div:nth-child(3) {background: url(./img/motor_24.jpg) no-repeat center / cover;}
+
+@keyframes slide {
+	100%, 0%, 28% {margin-left: 0;}
+	33%, 61% {margin-left: -100%;}
+	66%, 94% {margin-left: -200%;}
+}
+
+
+/*sponsor*/
+#sponsor {display: flex; justify-content: space-between; padding: 30px 20px; align-items: center;}
+#sponsor > .slide {height: 50px; display: flex; justify-content: space-between;}
+#sponsor .wrap > img {max-height: 100%;}
+#sponsor > #sponsor  {display: flex; justify-content: space-between; padding: 0 20px; align-items: center;}
