@@ -17,4 +17,8 @@
 			print_pre($contents);
 			exit;
 		}
+
+		function getList () {
+			
+		}
 	}
