@@ -129,8 +129,8 @@ footer > .admin-info i {margin-left: 15px; margin-right: 5px;}
 #video-edit > :not(.none) {display: none;}
 #times {width: 800px; margin: 0 auto; margin-bottom: 20px; display: flex; justify-content: space-between; font-size: 15px;}
 #edit-tools {display: flex; justify-content: space-between; margin: 0 auto; width: 650px; margin-bottom: 20px;}
-#edit-tools span {height: 30px; padding: 0 10px; position: relative; display: block; color: #fff; border-radius: 5px; background: #666; line-height: 30px; font-size: 13px; transition: .3s; cursor: pointer;}
-#edit-tools span:hover, #edit-tools input:checked + span {background: #d83030;}
+#edit-tools > a {height: 30px; padding: 0 10px; position: relative; display: block; color: #fff; border-radius: 5px; background: #666; line-height: 30px; font-size: 13px; transition: .3s; cursor: pointer;}
+#edit-tools > a:hover, #edit-tools a.active {background: #d83030;}
 #poster-list {width: 100% ; display: flex; justify-content: space-between;}
 #poster-list > a {width: 19%;}
 #poster-list img {max-width: 100%; cursor: pointer;}
