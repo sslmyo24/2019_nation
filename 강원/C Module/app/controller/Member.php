@@ -12,8 +12,7 @@
 		}
 
 		function login_chk () {
-			access(!$this->member(), "비회원만 접근가능합니다.");
-			move();
+			access(!$this->member(), "비회원만 접근가능합니다.", "/home");
 		}
 
 		function login () {
