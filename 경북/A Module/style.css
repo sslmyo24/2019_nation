@@ -74,7 +74,12 @@ header button:first-child {margin-right: 10px;}
 #sub-visual > #visual-text {font-size: 50px; line-height: 400px;}
 
 /*content*/
-#about {}
+#brand {margin: 70px auto; width: 1400px; display: flex; justify-content: space-between; height: 500px; align-items: center; background: url(./img/image_46.jpg) no-repeat center / cover; position: relative; padding: 0 50px; box-sizing: border-box;}
+#brand:before {position: absolute; width: 100%; background: rgba(0,0,0,.5); content: ""; display: block; z-index: 10; top: 0; left: 0; height: 100%; box-sizing: border-box; border-top: 3px solid #d83030; border-bottom: 3px solid #d83030;}
+#brand > * {position: relative; z-index: 20; color: #fff;}
+#brand > strong {font-size: 30px; width: 50%;}
+#brand > strong > span {color: #d83030;}
+#brand > p {font-size: 17px;}
 
 /*news*/
 #news {width: 1000px; margin: 50px auto; display: flex; height: 640px; justify-content: space-between; flex-wrap: wrap; align-content: space-between;}
@@ -114,6 +119,8 @@ footer > .admin-info i {margin-left: 15px; margin-right: 5px;}
 #guide {padding: 80px 0;}
 #guide > article {width: 1000px; margin: 0 auto;}
 #guide > article:not(:last-child) {margin-bottom: 50px;}
+#guide strong {color: #d83030; font-size: 25px;}
+#guide p {font-size: 15px;}
 
 /*mobile*/
 @media (max-width: 1300px) {
