@@ -166,7 +166,7 @@ footer .social img {max-height: 100%;}
 #history article:nth-child(odd) {border-left: 2px solid #666; margin-left: calc(50% - 2px);}
 #history img {margin-right: 20px; height: 200px;}
 
-.action-form {width: 600px; margin: 50px auto; padding: 30px; box-sizing: border-box;}
+.action-form {width: 600px; margin: 0 auto; padding: 30px; box-sizing: border-box;}
 .action-form > h2 {text-align: center; margin-bottom: 30px;}
 .action-form input, .action-form select {width: 100%; border: 1px solid #aaa; transition: .3s; height: 40px; margin-bottom: 20px; border-radius: 10px; padding-left: 20px; box-sizing: border-box; outline: none;}
 .action-form input:focus {border-color: #d83030;}
@@ -174,3 +174,16 @@ footer .social img {max-height: 100%;}
 .action-form span {font-size: 13px; padding-left: 10px; margin-bottom: 10px; display: inline-block;}
 .action-form .form-date {display: flex; justify-content: space-between;}
 .action-form .form-date > input {width: 49%;}
+
+#svgImg {width: 600px; margin: 0 auto; margin-bottom: 20px;}
+#svgImg > img {max-width: 100%;}
+
+#booth > option:disabled {background: #999; color: #fff;}
+
+#company-list {width: 700px; margin: 0 auto; border: 1px solid #aaa;}
+#company-list th {background: #666; color: #fff; line-height: 40px; font-size: 13px;}
+#company-list td {text-align: center; line-height: 40px; font-size: 12px; border-bottom: 1px solid #aaa;}
+
+#ticketing-graph {display: flex; align-items: center; font-size: 15px;}
+#ticketing-graph > img {width: 300px;}
+#ticketing-graph span {color: #d83030; width: 120px; display: inline-block; font-weight: bold;}

@@ -8,7 +8,7 @@
 		
 		function logout () {
 			session_destroy();
-			move("/home");
+			move(HOME."/home");
 		}
 
 		function login_chk () {
@@ -43,6 +43,6 @@
 
 					break;
 			}
-			move("/home");
+			move(HOME."/home");
 		}
 	}

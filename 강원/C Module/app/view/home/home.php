@@ -12,17 +12,17 @@
 			</div>
 			<div class="slide">
 				<div class="slide-body">
-					<img src="/public/img/sponsor/sponsor_1.jpg" alt="sponsor1">
-					<img src="/public/img/sponsor/sponsor_2.jpg" alt="sponsor2">
-					<img src="/public/img/sponsor/sponsor_3.jpg" alt="sponsor3">
-					<img src="/public/img/sponsor/sponsor_4.jpg" alt="sponsor4">
-					<img src="/public/img/sponsor/sponsor_5.jpg" alt="sponsor5">
-					<img src="/public/img/sponsor/sponsor_6.jpg" alt="sponsor6">
-					<img src="/public/img/sponsor/sponsor_7.jpg" alt="sponsor7">
-					<img src="/public/img/sponsor/sponsor_8.jpg" alt="sponsor8">
-					<img src="/public/img/sponsor/sponsor_9.jpg" alt="sponsor9">
-					<img src="/public/img/sponsor/sponsor_10.jpg" alt="sponsor10">
-					<img src="/public/img/sponsor/sponsor_11.jpg" alt="sponsor11">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_1.jpg" alt="sponsor1">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_2.jpg" alt="sponsor2">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_3.jpg" alt="sponsor3">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_4.jpg" alt="sponsor4">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_5.jpg" alt="sponsor5">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_6.jpg" alt="sponsor6">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_7.jpg" alt="sponsor7">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_8.jpg" alt="sponsor8">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_9.jpg" alt="sponsor9">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_10.jpg" alt="sponsor10">
+					<img src="<?php echo HOME ?>/public/img/sponsor/sponsor_11.jpg" alt="sponsor11">
 				</div>
 			</div>
 			<div class="next-btn slide-btn">
@@ -38,7 +38,7 @@
 		<h2>GALLERY</h2>
 		<div class="wrap">
 			<article>
-				<img src="/public/img/gallery/AMGGLA45.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/AMGGLA45.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">MERCEDES-BENZ</strong>
 					<strong class="name">AMG GLA 45</strong>
@@ -54,7 +54,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/AMGGT.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/AMGGT.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">MERCEDES-BENZ</strong>
 					<strong class="name">AMG GT</strong>
@@ -70,7 +70,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/Boxster.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/Boxster.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">PORSCHE</strong>
 					<strong class="name">Boxster</strong>
@@ -86,7 +86,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/California.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/California.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">FERRARI</strong>
 					<strong class="name">California</strong>
@@ -102,7 +102,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/ContinentalFlyingSpur.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/ContinentalFlyingSpur.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">BENTLEY</strong>
 					<strong class="name">Continental Flying Spur</strong>
@@ -118,7 +118,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/DB11.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/DB11.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">ASTON MARTIN</strong>
 					<strong class="name">DB11</strong>
@@ -134,7 +134,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/Huracan.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/Huracan.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">LAMBORGHINI</strong>
 					<strong class="name">Huracan</strong>
@@ -150,7 +150,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="/public/img/gallery/X6M50d.jpg" alt="car1">
+				<img src="<?php echo HOME ?>/public/img/gallery/X6M50d.jpg" alt="car1">
 				<div class="text">
 					<strong class="company">BMW</strong>
 					<strong class="name">X6 M50d</strong>
@@ -168,28 +168,28 @@
 		</div>
 
 		<div class="modal" id="modal1">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/AMGGLA45.jpg" alt="car1"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/AMGGLA45.jpg" alt="car1"></div>
 		</div>
 		<div class="modal" id="modal2">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/AMGGT.jpg" alt="car2"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/AMGGT.jpg" alt="car2"></div>
 		</div>
 		<div class="modal" id="modal3">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/Boxster.jpg" alt="car3"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/Boxster.jpg" alt="car3"></div>
 		</div>
 		<div class="modal" id="modal4">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/California.jpg" alt="car4"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/California.jpg" alt="car4"></div>
 		</div>
 		<div class="modal" id="modal5">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/ContinentalFlyingSpur.jpg" alt="car5"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/ContinentalFlyingSpur.jpg" alt="car5"></div>
 		</div>
 		<div class="modal" id="modal6">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/DB11.jpg" alt="car6"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/DB11.jpg" alt="car6"></div>
 		</div>
 		<div class="modal" id="modal7">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/Huracan.jpg" alt="car7"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/Huracan.jpg" alt="car7"></div>
 		</div>
 		<div class="modal" id="modal8">
-			<div class="wrap"><a href="#!">x</a><img src="/public/img/gallery/X6M50d.jpg" alt="car8"></div>
+			<div class="wrap"><a href="#!">x</a><img src="<?php echo HOME ?>/public/img/gallery/X6M50d.jpg" alt="car8"></div>
 		</div>
 
 	</section>
