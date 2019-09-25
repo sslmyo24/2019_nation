@@ -19,7 +19,6 @@
 	</footer>
 
 	<!-- js -->
-	<script src="/public/js/jquery-latest.min.js"></script>
 	<script src="/public/js/app.js"></script>
 
 </body>

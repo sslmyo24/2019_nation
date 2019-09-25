@@ -7,6 +7,9 @@
 	<!-- css -->
 	<link rel="stylesheet" href="/public/fontawesome-free-5.1.0-web/css/all.css">
 	<link rel="stylesheet" href="/public/style.css">
+
+	<!-- js -->
+	<script src="/public/js/jquery-latest.min.js"></script>
 </head>
 <body>
 	
@@ -53,9 +56,9 @@
 						</ul>
 					</li>
 					<li class="main-menu">
-						<a href="#">관리자</a>
+						<a href="/admin">관리자</a>
 						<ul>
-							<li><a href="#">사이트관리자</a></li>
+							<li><a href="/admin">사이트관리자</a></li>
 							<li><a href="#">참가업체 부스신청</a></li>
 						</ul>
 					</li>

@@ -8,7 +8,6 @@
 			$get = isset($_GET['url']) ? explode("/", $_GET['url']) : null;
 			$url['type'] = $get[0] ?? 'home';
 			$url['page'] = $get[1] ?? $url['type'];
-			$url['member'] = $_SESSION['member'] ?? null;
 			return (Object)$url;
 		}
 
@@ -21,6 +20,9 @@
 		}
 
 		protected function index () {
+			if (DB::rowCount("SELECT * FROM member where id = 'admin' and pw = '1234'") == 0) {
+				DB::query("INSERT INTO member SET id = 'admin', pw = '1234', name = '관리자', level = 'C'");
+			}
 			if (isset($_POST['action'])) {
 				$this->action();
 			}
@@ -34,6 +36,6 @@
 		}
 
 		protected function member () {
-			return isset($_SESSION['member']);
+			return $_SESSION['member'] ?? false;
 		}
 	}

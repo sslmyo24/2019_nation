@@ -158,3 +158,19 @@ footer .social img {max-height: 100%;}
 #saved img {max-width: 100%;}
 #saved .deleteSite {width: 30px; height: 30px; color: #fff; border-radius: 50%; background: #d83030; position: absolute; top: -5px; right: -5px; outline: none; border: none;}
 #saved:empty:before {content: "저장된 내역이 없습니다."; background: #ddd; border-radius: 10px; width: 1200px; display: block; text-align: center; line-height: 200px; color: #000; font-size: 25px;}
+
+
+#history > .wrap {width: 1200px; margin: 0 auto;}
+#history article {width: 50%; height: 300px; box-sizing: border-box; display: flex;  padding: 30px;}
+#history article:nth-child(even) {border-right: 2px solid #666;}
+#history article:nth-child(odd) {border-left: 2px solid #666; margin-left: calc(50% - 2px);}
+#history img {margin-right: 20px; height: 200px;}
+
+.action-form {width: 600px; margin: 50px auto; padding: 30px; box-sizing: border-box;}
+.action-form > h2 {text-align: center; margin-bottom: 30px;}
+.action-form input, .action-form select {width: 100%; border: 1px solid #aaa; transition: .3s; height: 40px; margin-bottom: 20px; border-radius: 10px; padding-left: 20px; box-sizing: border-box; outline: none;}
+.action-form input:focus {border-color: #d83030;}
+.action-form button {height: 40px; background: #d83030; color: #fff; margin: 0 auto; border: none; border-radius: 5px; width: 100%;}
+.action-form span {font-size: 13px; padding-left: 10px; margin-bottom: 10px; display: inline-block;}
+.action-form .form-date {display: flex; justify-content: space-between;}
+.action-form .form-date > input {width: 49%;}
