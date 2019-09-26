@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>부산국제영화제</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="./fontawesome-free-5.1.0-web/css/all.css">
+	<link rel="stylesheet" href="./style.css">
+
+	<!-- js -->
+	<script src="./js/jquery-latset.min.js"></script>
+	<script src="./js/jquery-ui.min.js"></script>
+	<script src="./js/common.js"></script>
+</head>
+<body>
+
+	<!-- header  -->
+	<header>
+
+		<div class="contact">
+			<div class="admin-info">
+				<span><i class="fas fa-phone"></i><span>02-3675-5097</span></span>
+				<span><i class="fas fa-fax"></i><span>02-3675-5098</span></span>
+			</div>
+			<div class="member-btns">
+				<button type="button">회원가입</button>
+				<button type="button">로그인</button>
+			</div>
+		</div>
+
+
+		<div class="navigation">
+
+			<!-- logo -->
+			<div id="site-logo"><a href="./index.html">부산국제영화제</a></div>
+			
+			<input type="checkbox" id="menu">
+			<label for="menu" id="menu-open"><i class="fas fa-bars"></i></label>
+
+			<!-- navigation -->
+			<nav id="gnb">
+				<ul>
+					<li class="main-menu">
+						<a href="./index.html">부산국제영화제</a>
+						<ul class="sub-menu">
+							<li><a href="./summary.html">개최개요</a></li>
+							<li><a href="./guide.html">행사안내</a></li>
+						</ul>
+					</li>
+					<li class="main-menu">
+						<a href="#">출품신청</a>
+					</li>
+					<li class="main-menu">
+						<a href="#">상영일정</a>
+					</li>
+					<li class="main-menu">
+						<a href="#">상영작검색</a>
+					</li>
+					<li class="main-menu">
+						<a href="#">이벤트</a>
+						<ul class="sub-menu">
+							<li><a href="#">영화티저 콘테스트</a></li>
+							<li><a href="./premiere.html">콘테스트 참여하기</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+	</header>
+
+	<!-- visual -->
+	<section id="sub-visual" class="visual">
+
+		<div class="slide"></div>
+		<div class="slide"></div>
+		<div class="slide"></div>
+
+		<h1 id="visual-text">부산국제영화제</h1>
+
+	</section>
+
+	<section id="teaser-edit">
+		<div id="video-edit">
+			<div class="none">동영상을 선택하세요</div>
+			<div class="top wrap"></div>
+			<div class="move wrap"></div>
+			<video width="800" height="450"></video>
+			<svg width="800" height="450"></svg>
+		</div>
+		<div id="times">
+			<div id="video-time"><span class="current">00:00:00:00</span>/<span class="duration">00:00:00:00</span></div>
+			<div id="clip-time"><span class="current">00:00:00:00</span>/<span class="duration">00:00:00:00</span></div>
+		</div>
+		<div id="timeline">
+			<ul></ul>
+			<div class="timeline-current"></div>
+		</div>
+		<div id="edit-tools">
+			<a href="#" class="draw" id="Line">자유곡선</a>
+			<a href="#" class="draw" id="Rect">사각형</a>
+			<a href="#" class="draw" id="Text">텍스트</a>
+			<a href="#" class="draw" id="select">선택</a>
+			<a href="#" class="state" id="play">재생</a>
+			<a href="#" class="state" id="pause">정지</a>
+			<a href="#" id="all">전체 삭제</a>
+			<a href="#" id="one">선택 삭제</a>
+			<a href="#" id="down">다운로드</a>
+		</div>
+		<div id="edit-styles">
+			<div>
+				<span>색상</span>
+				<label for="color1">
+					<input type="radio" name="color" id="color1" value="#999" checked>
+					<span>gray</span>
+				</label>
+				<label for="color2">
+					<input type="radio" name="color" id="color2" value="#09f">
+					<span>blue</span>
+				</label>
+				<label for="color3">
+					<input type="radio" name="color" id="color3" value="#0f9">
+					<span>green</span>
+				</label>
+				<label for="color4">
+					<input type="radio" name="color" id="color4" value="#ed0">
+					<span>yellow</span>
+				</label>
+			</div>
+			<div>
+				<span>선 두께</span>
+				<label for="weight1">
+					<input type="radio" name="weight" id="weight1" value="3" checked>
+					<span>3px</span>
+				</label>
+				<label for="weight2">
+					<input type="radio" name="weight" id="weight2" value="5">
+					<span>5px</span>
+				</label>
+				<label for="weight3">
+					<input type="radio" name="weight" id="weight3" value="10">
+					<span>10px</span>
+				</label>
+			</div>
+			<div>
+				<span>글자크기</span>
+				<label for="size1">
+					<input type="radio" name="size" id="size1" value="16" checked>
+					<span>16px</span>
+				</label>
+				<label for="size2">
+					<input type="radio" name="size" id="size2" value="18">
+					<span>18px</span>
+				</label>
+				<label for="size3">
+					<input type="radio" name="size" id="size3" value="24">
+					<span>24px</span>
+				</label>
+				<label for="size4">
+					<input type="radio" name="size" id="size4" value="32">
+					<span>32px</span>
+				</label>
+			</div>
+		</div>
+		<div id="poster-list">
+			<a href="#" data-url="./movie/movie1.mp4">
+				<img src="./movie/movie1-cover.jpg" alt="movie1">
+			</a>
+			<a href="#" data-url="./movie/movie2.mp4">
+				<img src="./movie/movie2-cover.jpg" alt="movie2">
+			</a>
+			<a href="#" data-url="./movie/movie3.mp4">
+				<img src="./movie/movie3-cover.jpg" alt="movie3">
+			</a>
+			<a href="#" data-url="./movie/movie4.mp4">
+				<img src="./movie/movie4-cover.jpg" alt="movie4">
+			</a>
+			<a href="#" data-url="./movie/movie5.mp4">
+				<img src="./movie/movie5-cover.jpg" alt="movie5">
+			</a>
+		</div>
+	</section>
+
+	<!-- footer -->
+	<footer>
+		<div class="admin-info">
+			<div><span class="name">부산사무국(48058)</span><i class="fas fa-fax"></i>051-709-2299<i class="fas fa-phone"></i>1688-3010<i class="fas fa-map-marked-alt"></i>부산시 해운대구 수영강변대로 120 영화의전당 비프힐 3층</div>
+			<div><span class="name">서울사무소(03131)</span><i class="fas fa-fax"></i>02-3675-5098<i class="fas fa-phone"></i>02-3675-5097<i class="fas fa-map-marked-alt"></i>서울특별시 종로구 율곡로 84 가든타워 1601호</div>
+			<div>ⓒ Busan International Film Festival</div>
+		</div>
+		<div id="social">
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+		</div>
+	</footer>
+
+</body>
+</html>
