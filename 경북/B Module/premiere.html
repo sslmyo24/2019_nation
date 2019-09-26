@@ -84,38 +84,99 @@
 	<section id="teaser-edit">
 		<div id="video-edit">
 			<div class="none">동영상을 선택하세요</div>
+			<div class="top wrap"></div>
+			<div class="move wrap"></div>
 			<video width="800" height="450"></video>
 			<svg width="800" height="450"></svg>
 		</div>
 		<div id="times">
 			<div id="video-time"><span class="current">00:00:00:00</span>/<span class="duration">00:00:00:00</span></div>
-			<div id="cilp-time"><span class="current">00:00:00:00</span>/<span class="duration">00:00:00:00</span></div>
+			<div id="clip-time"><span class="current">00:00:00:00</span>/<span class="duration">00:00:00:00</span></div>
+		</div>
+		<div id="timeline">
+			<ul></ul>
+			<div class="timeline-current"></div>
 		</div>
 		<div id="edit-tools">
-			<label for="line"><input id="line" name="edit" type="radio"><span>자유곡선</span></label>
-			<label for="square"><input id="square" name="edit" type="radio"><span>사각형</span></label>
-			<label for="text"><input id="text" name="edit" type="radio"><span>텍스트</span></label>
-			<label for="select"><input id="select" name="edit" type="radio"><span>선택</span></label>
-			<label for="play"><input name="state" id="play" type="radio"><span>재생</span></label>
-			<label for="pause"><input name="state" id="pause" type="radio"><span>정지</span></label>
-			<label for="all-delete"><input id="all-delete" type="button"><span>전체 삭제</span></label>
-			<label for="select-delete"><input id="select-delete" type="button"><span>선택 삭제</span></label>
-			<label for="download"><input id="download" type="button"><span>다운로드</span></label>
+			<a href="#" class="draw" id="Line">자유곡선</a>
+			<a href="#" class="draw" id="Rect">사각형</a>
+			<a href="#" class="draw" id="Text">텍스트</a>
+			<a href="#" class="draw" id="select">선택</a>
+			<a href="#" class="state" id="play">재생</a>
+			<a href="#" class="state" id="pause">정지</a>
+			<a href="#" id="all">전체 삭제</a>
+			<a href="#" id="one">선택 삭제</a>
+			<a href="#" id="down">다운로드</a>
+		</div>
+		<div id="edit-styles">
+			<div>
+				<span>색상</span>
+				<label for="color1">
+					<input type="radio" name="color" id="color1" value="#999" checked>
+					<span>gray</span>
+				</label>
+				<label for="color2">
+					<input type="radio" name="color" id="color2" value="#09f">
+					<span>blue</span>
+				</label>
+				<label for="color3">
+					<input type="radio" name="color" id="color3" value="#0f9">
+					<span>green</span>
+				</label>
+				<label for="color4">
+					<input type="radio" name="color" id="color4" value="#ed0">
+					<span>yellow</span>
+				</label>
+			</div>
+			<div>
+				<span>선 두께</span>
+				<label for="weight1">
+					<input type="radio" name="weight" id="weight1" value="3" checked>
+					<span>3px</span>
+				</label>
+				<label for="weight2">
+					<input type="radio" name="weight" id="weight2" value="5">
+					<span>5px</span>
+				</label>
+				<label for="weight3">
+					<input type="radio" name="weight" id="weight3" value="10">
+					<span>10px</span>
+				</label>
+			</div>
+			<div>
+				<span>글자크기</span>
+				<label for="size1">
+					<input type="radio" name="size" id="size1" value="16" checked>
+					<span>16px</span>
+				</label>
+				<label for="size2">
+					<input type="radio" name="size" id="size2" value="18">
+					<span>18px</span>
+				</label>
+				<label for="size3">
+					<input type="radio" name="size" id="size3" value="24">
+					<span>24px</span>
+				</label>
+				<label for="size4">
+					<input type="radio" name="size" id="size4" value="32">
+					<span>32px</span>
+				</label>
+			</div>
 		</div>
 		<div id="poster-list">
-			<a href="#" data-url="movie1">
+			<a href="#" data-url="./movie/movie1.mp4">
 				<img src="./movie/movie1-cover.jpg" alt="movie1">
 			</a>
-			<a href="#" data-url="movie2">
+			<a href="#" data-url="./movie/movie2.mp4">
 				<img src="./movie/movie2-cover.jpg" alt="movie2">
 			</a>
-			<a href="#" data-url="movie3">
+			<a href="#" data-url="./movie/movie3.mp4">
 				<img src="./movie/movie3-cover.jpg" alt="movie3">
 			</a>
-			<a href="#" data-url="movie4">
+			<a href="#" data-url="./movie/movie4.mp4">
 				<img src="./movie/movie4-cover.jpg" alt="movie4">
 			</a>
-			<a href="#" data-url="movie5">
+			<a href="#" data-url="./movie/movie5.mp4">
 				<img src="./movie/movie5-cover.jpg" alt="movie5">
 			</a>
 		</div>
