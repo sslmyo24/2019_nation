@@ -369,7 +369,6 @@ const downloadVideo = _ => {
 					}
 					video.ontimeupdate = _ => {
 						const { currentTime: t } = video
-						console.log(t); console.log(svg)
 						Array.from(svg.children).forEach(v => {
 							const {start, end} = v.dataset
 							v.style.cssText = start <= t && t <= end ? '' : 'opacity:0;z-index:-1'

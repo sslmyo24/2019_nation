@@ -168,9 +168,9 @@ footer > .admin-info i {margin-left: 15px; margin-right: 5px;}
 .action-form input:focus {border-color: #d83030;}
 .action-form button {height: 40px; background: #d83030; color: #fff; margin: 0 auto; border: none; border-radius: 5px; width: 100%;}
 .action-form span {font-size: 13px; padding-left: 10px; margin-bottom: 10px; display: inline-block;}
-.action-form .radios > div {display: flex; flex-wrap: wrap; width: 100%;}
-.action-form .radios > div span {border: 2px solid #d83030; height: 25px; line-height: 25px; padding: 0 10px; font-size: 11px; display: inline-block; margin-right: 10px; border-radius: 10px; cursor: pointer;}
-.action-form .radios > div input:checked + span {background: #d83030; color: #fff;}
+.radios > div {display: flex; flex-wrap: wrap; width: 100%;}
+.radios > div span {border: 2px solid #d83030; height: 25px; line-height: 25px; padding: 0 10px; font-size: 11px; display: inline-block; margin-right: 10px; border-radius: 5px; cursor: pointer;}
+.radios > div input:checked + span {background: #d83030; color: #fff;}
 
 section:not(.visual) {padding: 70px 0;}
 section > h2 {text-align: center; font-size: 30px; margin-bottom: 30px;}
@@ -203,6 +203,23 @@ section > h2:after {width: 50px; height: 2px; background: #000; margin: 0 auto; 
 .list .info > div {line-height: 50px; padding-left: 20px; border-bottom: 1px solid #aaa;}
 .list .info span {font-weight: bold; width: 200px; display: inline-block;}
 .list > button {background: #d83030; padding: 0 20px; height: 40px; border: none; border-radius: 5px; color: #fff; margin-top: 30px;}
+.search-header {width: 1000px; margin: 0 auto; background: #f7f7f7; border: 1px solid #aaa; border-radius: 5px; padding: 30px; box-sizing: border-box;}
+.search-header > form {display: flex;}
+.search-header h3 {margin-bottom: 10px;}
+.search-header .radios {display: flex; width: 400px; align-items: center;}
+.search-header > form > * > span {font-size: 13px; width: 40px;}
+.search-header input[name="key"] {font-size: 11px; line-height: 25px; padding-left: 10px; width: 200px; height: 25px; margin-right: 10px;}
+.search-header button {border: none; background: #d83030; border-radius: 5px; color: #fff; padding: 0 10px; font-size: 11px;}
+.search-info {margin-top: 15px; font-size: 13px;}
+.search-info > span {margin-right: 10px;}
+.search-info .num {font-weight: bold;}
+[name="editFrm"] > button {padding: 0 20px; color: #fff; border: none; border-radius: 5px; height: 30px; background: #d83030; margin: 0 auto; display: block; margin-bottom: 30px;}
+.teaser-list {width: 1000px; margin: 0 auto; display: flex;}
+.teaser-list > article {width: 19%; cursor: pointer;}
+.teaser-list > article:not(:nth-child(5n)) {margin-right: 1%;}
+.teaser-list img {max-width: 100%; margin-bottom: 10px;}
+.teaser-list div:nth-of-type(1) {font-weight: bold; margin-bottom: 5px; font-size: 15px;}
+.teaser-list div:nth-of-type(2) {color: #d83030; font-weight: lighter; font-size: 13px;}
 
 /*mobile*/
 @media (max-width: 1300px) {

@@ -59,7 +59,7 @@
 						<a href="<?php echo HOME ?>/schedule/calendar">상영일정</a>
 					</li>
 					<li class="main-menu">
-						<a href="<?php echo HOME ?>">상영작검색</a>
+						<a href="<?php echo HOME ?>/movie/search">상영작검색</a>
 					</li>
 					<li class="main-menu">
 						<a href="<?php echo HOME ?>/movie/contest">이벤트</a>
