@@ -30,7 +30,8 @@
 		}
 
 		function view () {
-			$this->data = DB::fetch("SELECT * FROM edit where idx = ?", [$_GET['idx']]);
+			$this->data = DB::fetch("SELECT e.video, e.svg, e.idx, m.name FROM edit e JOIN member m ON e.midx = m.idx where e.idx = ?", [$_GET['idx']]);
+			$this->sum = DB::fetch("SELECT sum(point) as sum FROM rating where eidx = ?", [$this->data->idx])->sum ?? 0;
 		}
 
 		function action () {
@@ -49,6 +50,13 @@
 
 					DB::query("INSERT INTO edit SET midx = ?, video = ?, svg = ?, cover = ?", [$this->member()->idx, $video, $svg, $cover]);
 					move(HOME."/movie/edit");
+
+					break;
+
+				case 'rating':
+
+					DB::query("INSERT INTO rating SET eidx = ?, point = ?", [$_GET['idx'], $point]);
+					move(HOME."/movie/contest");
 
 					break;
 			}

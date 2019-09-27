@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 19-09-27 03:10
+-- 생성 시간: 19-09-27 06:20
 -- 서버 버전: 10.4.6-MariaDB
 -- PHP 버전: 7.3.9
 
@@ -97,9 +97,15 @@ INSERT INTO `movie` (`idx`, `midx`, `name`, `duration`, `year`, `category`) VALU
 CREATE TABLE `rating` (
   `idx` int(11) NOT NULL,
   `eidx` int(11) NOT NULL,
-  `midx` int(11) NOT NULL,
   `point` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 테이블의 덤프 데이터 `rating`
+--
+
+INSERT INTO `rating` (`idx`, `eidx`, `point`) VALUES
+(1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -184,7 +190,7 @@ ALTER TABLE `movie`
 -- 테이블의 AUTO_INCREMENT `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 테이블의 AUTO_INCREMENT `schedule`

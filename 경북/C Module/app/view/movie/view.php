@@ -14,6 +14,62 @@
 		<video src="<?php echo $this->data->video ?>" width="800" height="450"></video>
 		<?php echo $this->data->svg ?>
 	</div>
+	<div class="video-info">
+		<div><span>이름</span><?php echo $this->data->name ?></div>
+		<div><span>점수</span><?php echo $this->sum ?></div>
+	</div>
+	<div id="rating-form">
+		<form method="post">
+			<input type="hidden" name="action" value="rating">
+			<div class="radios">
+				<h3>점수</h3>
+				<div>
+					<label for="point1">
+						<input type="radio" name="point" id="point1" value="1" checked>
+						<span>1점</span>
+					</label>
+					<label for="point2">
+						<input type="radio" name="point" id="point2" value="2">
+						<span>2점</span>
+					</label>
+					<label for="point3">
+						<input type="radio" name="point" id="point3" value="3">
+						<span>3점</span>
+					</label>
+					<label for="point4">
+						<input type="radio" name="point" id="point4" value="4">
+						<span>4점</span>
+					</label>
+					<label for="point5">
+						<input type="radio" name="point" id="point5" value="5">
+						<span>5점</span>
+					</label>
+					<label for="point6">
+						<input type="radio" name="point" id="point6" value="6">
+						<span>6점</span>
+					</label>
+					<label for="point7">
+						<input type="radio" name="point" id="point7" value="7">
+						<span>7점</span>
+					</label>
+					<label for="point8">
+						<input type="radio" name="point" id="point8" value="8">
+						<span>8점</span>
+					</label>
+					<label for="point9">
+						<input type="radio" name="point" id="point9" value="9">
+						<span>9점</span>
+					</label>
+					<label for="point10">
+						<input type="radio" name="point" id="point10" value="10">
+						<span>10점</span>
+					</label>
+				</div>
+			</div>
+			<button type="submit">입력완료</button>
+			<button type="button" onclick="location.href = '<?php echo HOME ?>/movie/contest'">목록으로</button>
+		</form>
+	</div>
 </section>
 
 <script>
